@@ -1,0 +1,501 @@
+description,amenities,averageRating,booking_count,likes,dislikes,price,comments
+Good value turf with a reputation for cleanliness.,"['firstaid', 'cafe', 'parking']",4.5,283,341,1,79,Parking is limited and inconvenient.
+Great venue with many facilities and staff assistance.,"['firstaid', 'cafe', 'parking']",4.3,152,452,4,76,Excellent services and well-organized.
+Top-notch turf with eco-friendly amenities and practices.,"['parking', 'locker']",5.0,66,101,43,64,"Limited facilities, not worth the price."
+Spacious area for large games and tournaments.,"['firstaid', 'cafe', 'parking']",5.0,63,324,26,39,"Limited facilities, not worth the price."
+Compact turf with good pricing and well-maintained.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.2,208,388,31,36,"Could use better maintenance, average experience."
+"Turf with premium-quality grass, suitable for all types of sports.","['parking', 'locker', 'wifi']",4.1,201,332,20,90,Turf was too crowded and noisy.
+Good value turf with a reputation for cleanliness.,"['parking', 'locker', 'wifi']",4.8,276,176,7,23,Turf was too crowded and noisy.
+Affordable turf with a mix of different facilities.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.4,157,215,37,33,"Could use better maintenance, average experience."
+Turf with multiple seating arrangements.,"['parking', 'locker']",2.0,237,253,7,22,Outstanding quality and friendly staff.
+Turf with advanced technology for booking and scheduling.,"['parking', 'locker']",2.8,94,202,49,99,"Could use better maintenance, average experience."
+Versatile turf for local leagues and community events.,"['wifi', 'parking', 'restroom']",1.5,147,293,2,77,Great location with easy parking access.
+Spacious turf with room for larger events and teams.,"['parking', 'locker']",4.8,180,265,43,74,Overpriced for the facilities provided.
+"Safe, secure turf with friendly staff for events.","['parking', 'locker', 'wifi']",3.4,86,458,2,23,Amazing experience with great amenities!
+Versatile turf with different surface types for various sports.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.9,220,189,21,43,Lacks proper lighting for evening games.
+Popular venue for corporate and team events with all amenities included.,"['parking', 'firstaid', 'cafe']",3.7,217,273,5,53,Perfect for weekend games with friends.
+Turf with advanced technology for booking and scheduling.,"['wifi', 'cafe', 'firstaid']",3.5,267,221,1,49,Overpriced for the facilities provided.
+Perfect for family get-togethers with all basic amenities.,"['wifi', 'parking', 'restroom']",2.4,232,242,22,38,"Needs improvement, not up to expectations."
+"Turf with premium-quality grass, suitable for all types of sports.","['wifi', 'cafe', 'firstaid']",1.5,264,205,43,50,Highly recommended for sports enthusiasts.
+Flexible turf that can be used for multiple sports.,"['wifi', 'showers', 'lockers']",3.7,157,474,1,79,Staff was not very helpful.
+Compact yet versatile turf with well-maintained facilities.,"['parking', 'firstaid', 'cafe']",3.1,88,404,37,79,Turf was too crowded and noisy.
+Turf that offers great value for large bookings.,"['parking', 'locker']",4.1,64,459,16,38,Highly recommended for sports enthusiasts.
+"Good location, well-maintained turf with affordable rates.","['wifi', 'parking', 'restroom']",3.1,169,416,34,68,Excellent services and well-organized.
+Affordable but great location for training camps.,"['wifi', 'showers', 'lockers']",4.4,290,222,33,82,"Good value for the price, will book again."
+Top-notch turf with eco-friendly amenities and practices.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.2,53,489,22,41,Turf was okay but could be cleaner.
+Turf with amazing pitch quality and friendly staff.,"['wifi', 'cafe', 'firstaid']",3.2,142,108,29,43,Outstanding quality and friendly staff.
+Clean and modern turf for all your sports needs.,"['wifi', 'locker', 'parking', 'cafe']",4.5,263,361,7,95,Overpriced for the facilities provided.
+Professional turf with excellent pitch quality.,"['wifi', 'locker', 'parking', 'cafe']",2.6,202,172,21,49,"Needs improvement, not up to expectations."
+Sporty turf with a great social atmosphere.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.5,190,458,43,77,"Good value for the price, will book again."
+Turf with amazing pitch quality and friendly staff.,"['restroom', 'locker', 'showers']",1.1,259,322,35,50,"Good value for the price, will book again."
+"Turf with premium-quality grass, suitable for all types of sports.","['parking', 'locker']",4.0,210,140,4,83,Turf was okay but could be cleaner.
+Family-friendly venue with nearby amenities.,"['parking', 'locker', 'wifi']",3.5,65,469,12,38,"Could use better maintenance, average experience."
+Simple turf with good atmosphere for local sports leagues.,"['parking', 'locker']",3.8,286,303,28,67,"Limited facilities, not worth the price."
+Turf that offers great value for large bookings.,"['parking', 'locker', 'wifi']",1.9,219,363,30,64,Great location with easy parking access.
+Comfortable turf with all-season grass.,"['wifi', 'cafe', 'firstaid']",1.5,157,427,46,74,"Limited facilities, not worth the price."
+Spacious turf with comfortable seating and great accessibility.,"['wifi', 'locker', 'parking', 'cafe']",1.1,175,277,15,74,Turf was too crowded and noisy.
+Turf with high-end lighting system and regular maintenance.,"['parking', 'locker', 'wifi']",2.4,243,447,41,37,Parking is limited and inconvenient.
+Comfortable and clean turf with modern facilities.,"['restroom', 'locker', 'showers']",3.4,104,417,29,82,Turf was too crowded and noisy.
+Versatile turf with different surface types for various sports.,"['wifi', 'parking', 'restroom']",2.6,276,183,15,66,"Needs improvement, not up to expectations."
+Well-known turf with spacious fields for large events.,"['wifi', 'showers', 'lockers']",2.7,219,417,11,94,Amenities were not as advertised.
+Ideal for indoor/outdoor sports and fitness activities.,"['parking', 'firstaid', 'cafe']",4.6,83,210,16,76,Amenities were not as advertised.
+"Turf with premium grass, suitable for all types of games.","['restroom', 'firstaid', 'cafe', 'wifi']",2.4,207,350,15,64,Amenities were not as advertised.
+Budget-friendly option with basic amenities.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.1,296,482,11,52,Amenities were not as advertised.
+Newly renovated turf with modern facilities.,"['wifi', 'showers', 'lockers']",4.1,62,106,7,36,Outstanding quality and friendly staff.
+Turf with great support for event hosting.,"['parking', 'locker', 'wifi']",2.6,190,183,19,89,Turf was too crowded and noisy.
+"Turf with all-weather playing surfaces, great for outdoor games.","['wifi', 'showers', 'lockers']",3.5,67,307,2,23,Outstanding quality and friendly staff.
+"Safe, secure turf with friendly staff for events.","['wifi', 'showers', 'lockers']",4.4,209,487,15,39,Turf was too crowded and noisy.
+Popular venue for corporate and team events with all amenities included.,"['parking', 'locker']",4.8,145,489,29,66,Perfect for weekend games with friends.
+Large turf with room for large-scale events.,"['restroom', 'locker', 'showers']",1.6,276,413,44,34,"Needs improvement, not up to expectations."
+Perfect for community sports and socializing events.,"['wifi', 'parking', 'restroom']",4.7,172,121,22,89,Ideal for family gatherings and events.
+Premium turf with modern facilities and professional-grade grass.,"['wifi', 'locker', 'parking', 'cafe']",3.0,88,482,27,66,Excellent services and well-organized.
+Large turf with room for large-scale events.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.0,95,102,39,97,Perfect for weekend games with friends.
+"Turf with soundproofed surroundings, ideal for events.","['parking', 'firstaid', 'cafe']",2.8,293,226,4,94,Amenities were not as advertised.
+Spacious turf with comfortable seating and great accessibility.,"['parking', 'locker', 'wifi']",4.9,78,396,19,28,"Enjoyed playing here, will come back."
+Turf with adequate seating and viewing areas.,"['parking', 'locker']",3.0,239,287,39,35,"Needs improvement, not up to expectations."
+Ideal turf for school tournaments and local leagues.,"['parking', 'firstaid', 'cafe']",2.3,290,461,43,88,The turf is well-maintained and clean.
+Top-notch turf with eco-friendly amenities and practices.,"['wifi', 'locker', 'parking', 'cafe']",3.5,270,113,0,80,Ideal for family gatherings and events.
+Well-kept turf with all necessary facilities.,"['wifi', 'cafe', 'firstaid']",2.0,111,111,29,29,Turf was okay but could be cleaner.
+Turf for professional teams and local leagues.,"['wifi', 'showers', 'lockers']",1.3,294,186,20,69,"Good value for the price, will book again."
+"Turf with premium grass, suitable for all types of games.","['parking', 'locker']",1.5,285,111,19,22,"Needs improvement, not up to expectations."
+Versatile turf with different surface types for various sports.,"['wifi', 'locker', 'parking', 'cafe']",1.5,234,496,5,96,Turf was too crowded and noisy.
+Great atmosphere and top-notch maintenance.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.6,65,124,21,89,The turf is well-maintained and clean.
+"Spacious, modern turf with top-tier facilities.","['wifi', 'parking', 'restroom']",1.6,233,400,17,70,Excellent services and well-organized.
+Modern turf with good safety measures.,"['parking', 'locker']",3.6,285,342,7,38,Turf was too crowded and noisy.
+Top-notch turf with eco-friendly amenities and practices.,"['wifi', 'parking', 'restroom']",1.7,288,221,38,61,Excellent services and well-organized.
+Outdoor turf for sports lovers and fitness enthusiasts.,"['parking', 'locker']",2.4,170,246,31,54,Outstanding quality and friendly staff.
+Convenient and clean turf for community use.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.6,59,154,32,65,"Good value for the price, will book again."
+Turf that offers great value for large bookings.,"['parking', 'locker', 'wifi']",2.9,207,337,15,45,Parking is limited and inconvenient.
+High-quality turf with strong drainage system.,"['firstaid', 'cafe', 'parking']",3.7,202,455,11,88,Overpriced for the facilities provided.
+Turf with high-end lighting system and regular maintenance.,"['wifi', 'showers', 'lockers']",1.7,152,272,37,83,"Needs improvement, not up to expectations."
+Turf with advanced technology for booking and scheduling.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.8,133,491,33,56,"Limited facilities, not worth the price."
+Ideal for all levels of competition and training.,"['wifi', 'cafe', 'firstaid']",1.2,182,320,13,68,"Could use better maintenance, average experience."
+Great for evening games with floodlights.,"['restroom', 'locker', 'showers']",1.7,114,218,35,40,Ideal for family gatherings and events.
+Turf with great support for event hosting.,"['parking', 'firstaid', 'cafe']",2.1,271,408,32,93,"Enjoyed playing here, will come back."
+Spacious and clean turf for large tournaments.,"['restroom', 'locker', 'showers']",1.7,226,282,22,83,Amenities were not as advertised.
+Great turf for training camps and local competitions.,"['parking', 'firstaid', 'cafe']",1.4,52,387,49,24,The turf is well-maintained and clean.
+Compact turf with essential facilities and affordable rates.,"['parking', 'locker', 'wifi']",1.5,222,406,44,89,Excellent services and well-organized.
+Modern turf with good safety measures.,"['wifi', 'locker', 'parking', 'cafe']",2.8,191,399,1,23,Great location with easy parking access.
+Premium turf for corporate team-building events.,"['wifi', 'parking', 'restroom']",1.8,169,181,40,58,"Could use better maintenance, average experience."
+Compact turf with good pricing and well-maintained.,"['parking', 'locker', 'wifi']",2.5,207,310,20,54,Ideal for family gatherings and events.
+Conveniently located turf with nearby public transport.,"['wifi', 'cafe', 'firstaid']",3.0,291,249,1,20,The turf is well-maintained and clean.
+Spacious and clean turf for large tournaments.,"['parking', 'locker']",3.8,117,136,26,43,Turf was okay but could be cleaner.
+Ideal turf for school tournaments and local leagues.,"['parking', 'locker', 'wifi']",1.2,195,451,8,76,The turf is well-maintained and clean.
+Turf with amazing facilities and quiet surroundings.,"['parking', 'locker', 'wifi']",4.2,239,411,0,89,"Enjoyed playing here, will come back."
+"Perfect location for evening games, with floodlights.","['parking', 'firstaid', 'cafe']",3.5,86,460,10,60,Parking is limited and inconvenient.
+"Clean and tidy turf, great for social events.","['restroom', 'locker', 'showers']",1.3,202,158,2,73,Outstanding quality and friendly staff.
+"Safe, secure turf with friendly staff for events.","['firstaid', 'cafe', 'parking']",4.5,225,230,22,65,Parking is limited and inconvenient.
+Newly renovated turf with modern facilities.,"['wifi', 'showers', 'lockers']",4.7,242,301,25,79,Lacks proper lighting for evening games.
+Affordable and convenient turf with nearby food outlets.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.2,230,342,3,79,Amazing experience with great amenities!
+High-quality turf with excellent lighting and ample parking.,"['wifi', 'cafe', 'firstaid']",2.1,287,134,17,76,Overpriced for the facilities provided.
+Compact turf with essential facilities and affordable rates.,"['parking', 'firstaid', 'cafe']",4.2,256,192,5,50,Perfect for weekend games with friends.
+Good value turf with a reputation for cleanliness.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.0,122,306,34,43,Turf was okay but could be cleaner.
+Convenient turf with all basic amenities.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.7,192,452,21,55,"Enjoyed playing here, will come back."
+Top-notch turf with eco-friendly amenities and practices.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.8,98,490,42,49,Turf was too crowded and noisy.
+Comfortable and clean turf with modern facilities.,"['parking', 'firstaid', 'cafe']",2.5,170,431,14,43,Outstanding quality and friendly staff.
+Versatile turf for all kinds of local sports events.,"['wifi', 'locker', 'parking', 'cafe']",2.9,137,404,21,49,Highly recommended for sports enthusiasts.
+"Spacious, modern turf with top-tier facilities.","['wifi', 'locker', 'parking', 'cafe']",3.5,245,449,36,26,Ideal for family gatherings and events.
+Great for evening games with floodlights.,"['wifi', 'locker', 'parking', 'cafe']",2.5,189,312,41,54,Highly recommended for sports enthusiasts.
+Budget turf for small team events and casual matches.,"['parking', 'locker', 'wifi']",2.9,236,258,11,74,The turf is well-maintained and clean.
+Wide turf with multiple facilities and great lighting.,"['wifi', 'showers', 'lockers']",4.0,299,123,46,33,Amazing experience with great amenities!
+Budget turf for small team events and casual matches.,"['wifi', 'cafe', 'firstaid']",1.1,86,392,48,29,"Good value for the price, will book again."
+Ideal location for birthday parties and family events.,"['parking', 'locker', 'wifi']",2.0,110,103,41,99,Lacks proper lighting for evening games.
+Turf with comfortable seating and shaded areas.,"['parking', 'locker']",3.9,278,319,37,35,"Could use better maintenance, average experience."
+"Outdoor turf with spectacular views, perfect for events.","['restroom', 'firstaid', 'cafe', 'wifi']",4.6,220,463,17,73,"Good value for the price, will book again."
+High-quality turf with strong drainage system.,"['firstaid', 'cafe', 'parking']",3.0,173,481,44,96,Perfect for weekend games with friends.
+Turf suitable for any kind of local or international event.,"['parking', 'locker', 'wifi']",3.1,247,119,34,89,Outstanding quality and friendly staff.
+Premium turf for corporate team-building events.,"['firstaid', 'cafe', 'parking']",1.4,88,251,29,63,"Good value for the price, will book again."
+"Ideal turf for football, cricket, and other sports.","['parking', 'locker', 'wifi']",2.8,233,149,23,92,Lacks proper lighting for evening games.
+Outdoor turf for sports lovers and fitness enthusiasts.,"['parking', 'locker', 'wifi']",3.1,112,276,41,64,Staff was not very helpful.
+Turf with amazing facilities and quiet surroundings.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.0,95,195,29,75,The turf is well-maintained and clean.
+Premium turf for corporate team-building events.,"['wifi', 'parking', 'restroom']",2.1,137,204,13,76,Parking is limited and inconvenient.
+Premium turf for corporate team-building events.,"['wifi', 'cafe', 'firstaid']",2.5,60,349,5,40,The turf is well-maintained and clean.
+Clean and modern turf for all your sports needs.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.1,111,216,2,87,Great location with easy parking access.
+"Turf with soundproofed surroundings, ideal for events.","['parking', 'locker']",2.3,126,453,15,69,"Limited facilities, not worth the price."
+Well-known turf with spacious fields for large events.,"['firstaid', 'cafe', 'parking']",1.8,275,327,6,52,The turf is well-maintained and clean.
+Stylish turf with relaxing environment.,"['wifi', 'locker', 'parking', 'cafe']",2.3,202,165,13,26,"Enjoyed playing here, will come back."
+Turf with multiple seating arrangements.,"['restroom', 'locker', 'showers']",1.5,248,434,8,89,Staff was not very helpful.
+Well-maintained turf with well-designed infrastructure.,"['wifi', 'cafe', 'firstaid']",4.6,101,361,14,34,Overpriced for the facilities provided.
+Ideal for indoor/outdoor sports and fitness activities.,"['restroom', 'locker', 'showers']",3.4,53,394,20,51,"Limited facilities, not worth the price."
+Ideal for all levels of competition and training.,"['restroom', 'locker', 'showers']",3.7,108,342,34,94,Ideal for family gatherings and events.
+"Compact, clean turf with quick booking process.","['parking', 'firstaid', 'cafe']",4.2,121,470,1,39,Turf was okay but could be cleaner.
+Convenient turf with all basic amenities.,"['parking', 'locker', 'wifi']",3.0,197,285,26,34,Perfect for weekend games with friends.
+"Compact, clean turf with quick booking process.","['wifi', 'locker', 'parking', 'cafe']",1.3,142,345,1,67,"Needs improvement, not up to expectations."
+Turf for team-building exercises and group games.,"['wifi', 'locker', 'parking', 'cafe']",3.1,112,224,34,90,"Limited facilities, not worth the price."
+"Affordable turf, great for casual matches and local tournaments.","['wifi', 'cafe', 'firstaid']",3.3,103,367,17,40,Staff was not very helpful.
+Good value turf with a reputation for cleanliness.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.0,166,230,13,61,Great location with easy parking access.
+Turf with amazing facilities and quiet surroundings.,"['wifi', 'showers', 'lockers']",2.7,292,336,19,45,Outstanding quality and friendly staff.
+Turf with amazing pitch quality and friendly staff.,"['wifi', 'showers', 'lockers']",1.5,286,117,17,33,Perfect for weekend games with friends.
+Affordable but great location for training camps.,"['firstaid', 'cafe', 'parking']",2.1,159,139,9,76,Great location with easy parking access.
+Convenient location with wide turf for sports.,"['wifi', 'cafe', 'firstaid']",2.5,123,120,24,56,Excellent services and well-organized.
+Budget turf for small team events and casual matches.,"['parking', 'firstaid', 'cafe']",3.6,156,498,1,77,Parking is limited and inconvenient.
+Family-friendly environment with clean facilities.,"['wifi', 'cafe', 'firstaid']",3.3,275,324,24,40,Staff was not very helpful.
+Turf with amazing facilities and quiet surroundings.,"['wifi', 'showers', 'lockers']",2.4,106,454,32,88,Overpriced for the facilities provided.
+Wide turf with multiple facilities and great lighting.,"['wifi', 'cafe', 'firstaid']",4.9,267,381,35,22,Lacks proper lighting for evening games.
+Conveniently located turf with nearby public transport.,"['parking', 'firstaid', 'cafe']",3.4,218,107,30,56,Great location with easy parking access.
+Turf suitable for high-intensity training and matches.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.9,290,199,13,68,"Limited facilities, not worth the price."
+Family-friendly environment with clean facilities.,"['wifi', 'cafe', 'firstaid']",1.4,299,339,0,38,Overpriced for the facilities provided.
+Affordable and convenient turf with nearby food outlets.,"['parking', 'locker']",1.6,52,186,45,31,"Limited facilities, not worth the price."
+Family-friendly environment with clean facilities.,"['wifi', 'parking', 'restroom']",2.0,169,397,15,80,Excellent services and well-organized.
+Turf with great support for event hosting.,"['parking', 'locker']",1.6,55,113,45,60,Overpriced for the facilities provided.
+Family-friendly environment with clean facilities.,"['wifi', 'locker', 'parking', 'cafe']",1.7,54,433,2,52,Excellent services and well-organized.
+Popular venue for corporate and team events with all amenities included.,"['firstaid', 'cafe', 'parking']",2.1,54,101,34,69,Staff was not very helpful.
+Large turf with room for large-scale events.,"['wifi', 'parking', 'restroom']",1.7,103,474,40,87,Staff was not very helpful.
+"Budget-friendly, convenient turf for training camps.","['parking', 'firstaid', 'cafe']",4.6,96,392,5,90,Turf was too crowded and noisy.
+Ideal for all levels of competition and training.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.3,264,424,24,52,Lacks proper lighting for evening games.
+Spacious turf with ample seating and dining options.,"['wifi', 'cafe', 'firstaid']",3.1,226,140,12,43,Turf was okay but could be cleaner.
+Versatile turf with different surface types for various sports.,"['parking', 'locker']",2.6,58,417,33,80,Amazing experience with great amenities!
+Perfect place for local community sports games.,"['wifi', 'cafe', 'firstaid']",4.9,148,415,7,80,Lacks proper lighting for evening games.
+Great turf for training camps and local competitions.,"['wifi', 'parking', 'restroom']",1.4,69,480,20,47,Lacks proper lighting for evening games.
+Perfect for family get-togethers with all basic amenities.,"['wifi', 'locker', 'parking', 'cafe']",2.6,171,210,33,77,The turf is well-maintained and clean.
+Great atmosphere and top-notch maintenance.,"['wifi', 'parking', 'restroom']",4.9,290,113,3,62,"Good value for the price, will book again."
+Turf suitable for group sports and tournaments.,"['parking', 'locker', 'wifi']",4.5,110,330,24,60,Overpriced for the facilities provided.
+Turf for team-building exercises and group games.,"['wifi', 'parking', 'restroom']",4.3,172,183,14,58,Parking is limited and inconvenient.
+Comfortable turf with quick booking system.,"['wifi', 'showers', 'lockers']",2.0,283,229,3,68,Outstanding quality and friendly staff.
+Newly installed turf with great maintenance.,"['wifi', 'cafe', 'firstaid']",1.7,212,330,44,36,Highly recommended for sports enthusiasts.
+"Spacious, modern turf with top-tier facilities.","['parking', 'locker']",3.7,227,425,11,89,Staff was not very helpful.
+Turf with good quality artificial grass for training.,"['firstaid', 'cafe', 'parking']",4.7,131,244,31,89,Highly recommended for sports enthusiasts.
+Great venue with many facilities and staff assistance.,"['wifi', 'cafe', 'firstaid']",3.2,111,478,31,84,Great location with easy parking access.
+"Affordable turf, great for casual matches and local tournaments.","['firstaid', 'cafe', 'parking']",3.3,194,444,27,93,Parking is limited and inconvenient.
+Comfortable and clean turf with modern facilities.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.1,265,127,12,24,The turf is well-maintained and clean.
+Budget turf for small team events and casual matches.,"['parking', 'firstaid', 'cafe']",4.1,52,165,30,21,The turf is well-maintained and clean.
+Wide turf with multiple facilities and great lighting.,"['wifi', 'locker', 'parking', 'cafe']",1.7,209,262,13,41,Ideal for family gatherings and events.
+Well-maintained turf with well-designed infrastructure.,"['parking', 'locker', 'wifi']",2.3,276,328,19,76,Great location with easy parking access.
+Turf suitable for high-intensity training and matches.,"['wifi', 'cafe', 'firstaid']",2.7,279,360,17,85,Amazing experience with great amenities!
+Turf for professional teams and local leagues.,"['wifi', 'locker', 'parking', 'cafe']",3.0,62,263,28,93,Great location with easy parking access.
+"Safe, secure turf with friendly staff for events.","['wifi', 'parking', 'restroom']",2.0,169,400,5,35,Outstanding quality and friendly staff.
+Ideal for all levels of competition and training.,"['wifi', 'showers', 'lockers']",1.5,174,402,31,70,Parking is limited and inconvenient.
+"Turf with artificial grass, ideal for all-weather games.","['firstaid', 'cafe', 'parking']",3.4,288,386,28,58,Ideal for family gatherings and events.
+Versatile turf for all kinds of local sports events.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.2,138,494,42,95,The turf is well-maintained and clean.
+"Clean and tidy turf, great for social events.","['parking', 'locker', 'wifi']",3.3,122,109,1,59,The turf is well-maintained and clean.
+Well-maintained turf with locker rooms and showers.,"['firstaid', 'cafe', 'parking']",1.6,117,294,22,57,"Needs improvement, not up to expectations."
+Comfortable and clean turf with modern facilities.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.9,191,217,18,79,Overpriced for the facilities provided.
+Easy-to-book turf with simple user interface.,"['wifi', 'showers', 'lockers']",3.1,150,369,30,78,Turf was okay but could be cleaner.
+Comfortable turf with all-season grass.,"['firstaid', 'cafe', 'parking']",1.2,147,179,4,29,Amazing experience with great amenities!
+Family-friendly environment with clean facilities.,"['wifi', 'cafe', 'firstaid']",2.3,60,192,18,83,Lacks proper lighting for evening games.
+Popular venue for corporate and team events with all amenities included.,"['wifi', 'cafe', 'firstaid']",1.5,154,365,33,82,Amazing experience with great amenities!
+Ideal for all levels of competition and training.,"['wifi', 'locker', 'parking', 'cafe']",1.3,233,431,9,68,Turf was okay but could be cleaner.
+Ideal turf for school tournaments and local leagues.,"['firstaid', 'cafe', 'parking']",5.0,116,449,24,83,Highly recommended for sports enthusiasts.
+"Perfect location for evening games, with floodlights.","['wifi', 'showers', 'lockers']",2.3,172,460,1,51,Staff was not very helpful.
+Turf with high-end lighting system and regular maintenance.,"['wifi', 'showers', 'lockers']",4.2,269,356,10,26,Perfect for weekend games with friends.
+"Clean and tidy turf, great for social events.","['wifi', 'cafe', 'firstaid']",2.0,78,232,49,40,Excellent services and well-organized.
+Ideal turf for school tournaments and local leagues.,"['parking', 'firstaid', 'cafe']",3.7,186,375,30,39,Turf was too crowded and noisy.
+Large turf with room for large-scale events.,"['wifi', 'cafe', 'firstaid']",4.0,244,363,14,45,"Needs improvement, not up to expectations."
+Great for casual matches and corporate events.,"['restroom', 'locker', 'showers']",3.4,202,270,8,87,The turf is well-maintained and clean.
+Turf for team-building exercises and group games.,"['wifi', 'showers', 'lockers']",2.9,275,100,22,34,Staff was not very helpful.
+Turf with multiple seating arrangements.,"['parking', 'firstaid', 'cafe']",2.6,125,412,18,98,"Enjoyed playing here, will come back."
+Family-friendly environment with clean facilities.,"['parking', 'firstaid', 'cafe']",2.4,219,163,8,33,"Limited facilities, not worth the price."
+"Safe, secure turf with friendly staff for events.","['wifi', 'showers', 'lockers']",4.7,58,473,34,46,Highly recommended for sports enthusiasts.
+Well-known turf with spacious fields for large events.,"['restroom', 'locker', 'showers']",4.3,256,383,20,59,Turf was okay but could be cleaner.
+Easy-to-book turf with simple user interface.,"['wifi', 'locker', 'parking', 'cafe']",4.9,89,220,8,77,Lacks proper lighting for evening games.
+"Clean and tidy turf, great for social events.","['firstaid', 'cafe', 'parking']",1.5,74,206,27,47,Turf was too crowded and noisy.
+Great venue with many facilities and staff assistance.,"['restroom', 'locker', 'showers']",3.9,54,274,45,45,Turf was okay but could be cleaner.
+Well-maintained turf with well-designed infrastructure.,"['wifi', 'showers', 'lockers']",4.8,188,303,6,82,"Good value for the price, will book again."
+Turf with great accessibility for both players and spectators.,"['wifi', 'showers', 'lockers']",1.7,236,264,15,85,Amenities were not as advertised.
+Turf for professional teams and local leagues.,"['wifi', 'showers', 'lockers']",1.3,275,404,15,44,Ideal for family gatherings and events.
+Large turf with room for large-scale events.,"['wifi', 'showers', 'lockers']",4.0,265,219,32,22,"Limited facilities, not worth the price."
+Perfect place for local community sports games.,"['firstaid', 'cafe', 'parking']",3.3,173,143,3,91,Amenities were not as advertised.
+Spacious and clean turf for large tournaments.,"['parking', 'locker']",4.4,256,411,3,63,Amazing experience with great amenities!
+"Turf with premium-quality grass, suitable for all types of sports.","['firstaid', 'cafe', 'parking']",1.6,87,255,38,61,Excellent services and well-organized.
+Ideal turf for school tournaments and local leagues.,"['wifi', 'locker', 'parking', 'cafe']",4.2,121,466,39,25,Lacks proper lighting for evening games.
+Well-maintained turf with well-designed infrastructure.,"['parking', 'firstaid', 'cafe']",1.8,182,306,16,58,"Limited facilities, not worth the price."
+Well-maintained turf with well-designed infrastructure.,"['parking', 'locker', 'wifi']",1.7,225,489,36,71,Perfect for weekend games with friends.
+Spacious and clean turf for large tournaments.,"['parking', 'firstaid', 'cafe']",1.7,139,207,38,42,Lacks proper lighting for evening games.
+Budget turf for beginners and recreational sports.,"['wifi', 'parking', 'restroom']",4.3,195,350,28,69,Highly recommended for sports enthusiasts.
+Spacious turf for local games and friendly matches.,"['parking', 'firstaid', 'cafe']",3.7,247,469,35,62,Turf was too crowded and noisy.
+Compact yet versatile turf with well-maintained facilities.,"['wifi', 'parking', 'restroom']",3.1,86,433,37,38,"Good value for the price, will book again."
+Perfect for family get-togethers with all basic amenities.,"['parking', 'locker', 'wifi']",2.4,109,229,38,88,Excellent services and well-organized.
+Versatile turf for school and community events.,"['parking', 'locker', 'wifi']",4.5,225,392,49,70,Amenities were not as advertised.
+Turf with amazing pitch quality and friendly staff.,"['wifi', 'locker', 'parking', 'cafe']",2.6,254,119,36,30,The turf is well-maintained and clean.
+Budget-friendly option with basic amenities.,"['parking', 'firstaid', 'cafe']",4.3,77,381,34,31,Excellent services and well-organized.
+Convenient turf with all basic amenities.,"['firstaid', 'cafe', 'parking']",2.8,246,384,6,93,Amazing experience with great amenities!
+Convenient turf with all basic amenities.,"['parking', 'locker', 'wifi']",2.5,254,100,26,27,"Enjoyed playing here, will come back."
+"Turf with premium-quality grass, suitable for all types of sports.","['wifi', 'cafe', 'firstaid']",2.9,130,218,27,43,Parking is limited and inconvenient.
+Stylish turf with relaxing environment.,"['firstaid', 'cafe', 'parking']",2.2,163,134,21,60,"Good value for the price, will book again."
+Newly installed turf with great maintenance.,"['restroom', 'locker', 'showers']",4.0,89,297,13,55,"Needs improvement, not up to expectations."
+Premium turf for corporate team-building events.,"['restroom', 'locker', 'showers']",3.0,94,344,6,91,"Limited facilities, not worth the price."
+"Turf with premium grass, suitable for all types of games.","['restroom', 'locker', 'showers']",1.9,273,158,36,74,"Good value for the price, will book again."
+Beautiful turf for family sports days and activities.,"['wifi', 'parking', 'restroom']",4.6,111,424,21,28,"Limited facilities, not worth the price."
+Ideal turf for school tournaments and local leagues.,"['parking', 'locker']",2.5,142,260,4,66,"Good value for the price, will book again."
+Premium turf with modern facilities and professional-grade grass.,"['parking', 'firstaid', 'cafe']",3.2,164,278,1,34,Amenities were not as advertised.
+Newly renovated turf with modern facilities.,"['restroom', 'locker', 'showers']",4.6,235,305,26,67,Great location with easy parking access.
+"Good location, well-maintained turf with affordable rates.","['restroom', 'firstaid', 'cafe', 'wifi']",3.5,116,111,20,61,"Limited facilities, not worth the price."
+Professional-grade turf with excellent drainage system.,"['parking', 'locker', 'wifi']",1.5,105,375,37,79,Highly recommended for sports enthusiasts.
+"Simple turf, good for friendly games and casual matches.","['wifi', 'locker', 'parking', 'cafe']",4.8,89,280,14,89,"Enjoyed playing here, will come back."
+Versatile turf for local leagues and community events.,"['parking', 'firstaid', 'cafe']",3.5,147,341,20,31,The turf is well-maintained and clean.
+Family-friendly turf with easy access and spacious seating areas.,"['firstaid', 'cafe', 'parking']",2.3,89,315,9,21,"Enjoyed playing here, will come back."
+"Clean and tidy turf, great for social events.","['parking', 'locker']",1.6,140,350,22,26,Outstanding quality and friendly staff.
+"Spacious, modern turf with top-tier facilities.","['wifi', 'cafe', 'firstaid']",4.2,254,398,38,99,Turf was okay but could be cleaner.
+"Perfect location for evening games, with floodlights.","['wifi', 'cafe', 'firstaid']",3.5,286,225,4,22,Parking is limited and inconvenient.
+Great atmosphere and top-notch maintenance.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.1,82,316,0,22,"Enjoyed playing here, will come back."
+Great venue with many facilities and staff assistance.,"['parking', 'locker', 'wifi']",4.6,55,405,12,46,Ideal for family gatherings and events.
+"Simple turf, good for friendly games and casual matches.","['wifi', 'locker', 'parking', 'cafe']",4.2,265,384,20,59,"Good value for the price, will book again."
+Turf with adequate seating and viewing areas.,"['firstaid', 'cafe', 'parking']",1.6,196,284,25,52,Overpriced for the facilities provided.
+"Clean and tidy turf, great for social events.","['restroom', 'firstaid', 'cafe', 'wifi']",2.2,129,138,49,20,"Limited facilities, not worth the price."
+Turf for team-building exercises and group games.,"['parking', 'locker']",2.0,217,322,44,27,Amenities were not as advertised.
+Large venue turf with good infrastructure.,"['wifi', 'cafe', 'firstaid']",4.0,141,283,20,51,"Could use better maintenance, average experience."
+Well-maintained turf with well-designed infrastructure.,"['wifi', 'showers', 'lockers']",1.1,146,277,17,67,Turf was too crowded and noisy.
+Simple turf with good atmosphere for local sports leagues.,"['restroom', 'locker', 'showers']",3.3,108,393,36,23,Lacks proper lighting for evening games.
+Turf with secure surroundings and easy access.,"['wifi', 'locker', 'parking', 'cafe']",4.0,108,439,44,89,Turf was okay but could be cleaner.
+Large turf with room for large-scale events.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.5,97,250,31,38,Perfect for weekend games with friends.
+Flexible turf that can be used for multiple sports.,"['wifi', 'showers', 'lockers']",2.4,218,483,35,51,"Good value for the price, will book again."
+Large venue turf with good infrastructure.,"['wifi', 'showers', 'lockers']",4.3,62,225,16,28,Lacks proper lighting for evening games.
+"Safe, secure turf with friendly staff for events.","['firstaid', 'cafe', 'parking']",1.4,156,400,34,31,Parking is limited and inconvenient.
+Great atmosphere and top-notch maintenance.,"['restroom', 'locker', 'showers']",4.4,94,407,48,30,Turf was too crowded and noisy.
+"Turf for organized events, tournaments, and casual use.","['restroom', 'firstaid', 'cafe', 'wifi']",1.5,138,435,10,65,Amenities were not as advertised.
+"Turf with smooth grass, perfect for tennis matches.","['wifi', 'showers', 'lockers']",2.6,230,333,20,35,Turf was okay but could be cleaner.
+Turf suitable for any kind of local or international event.,"['wifi', 'cafe', 'firstaid']",4.2,219,479,25,20,"Limited facilities, not worth the price."
+"Ideal for local, school, and recreational leagues.","['wifi', 'cafe', 'firstaid']",1.6,149,474,3,82,The turf is well-maintained and clean.
+Professional-grade turf with excellent drainage system.,"['wifi', 'parking', 'restroom']",1.9,240,107,33,40,"Could use better maintenance, average experience."
+"Safe, secure turf with friendly staff for events.","['firstaid', 'cafe', 'parking']",3.9,204,440,47,49,Overpriced for the facilities provided.
+Good-sized turf with reliable security measures.,"['wifi', 'parking', 'restroom']",3.9,215,228,17,32,Amenities were not as advertised.
+Turf suitable for high-intensity training and matches.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.6,237,363,39,53,Perfect for weekend games with friends.
+"Freshly painted turf, safe for kids’ games.","['wifi', 'showers', 'lockers']",3.8,56,256,34,23,"Limited facilities, not worth the price."
+"Clean and tidy turf, great for social events.","['restroom', 'firstaid', 'cafe', 'wifi']",3.2,182,451,40,47,Ideal for family gatherings and events.
+"Turf with all-weather playing surfaces, great for outdoor games.","['restroom', 'locker', 'showers']",2.0,284,457,28,78,Turf was too crowded and noisy.
+"Outdoor turf with spectacular views, perfect for events.","['wifi', 'cafe', 'firstaid']",2.4,94,104,28,46,Lacks proper lighting for evening games.
+Comfortable turf with all-season grass.,"['parking', 'locker', 'wifi']",1.7,107,185,37,88,Turf was too crowded and noisy.
+A well-known turf with great customer service.,"['wifi', 'cafe', 'firstaid']",4.6,298,274,41,44,Amenities were not as advertised.
+Turf with comfortable seating and shaded areas.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.3,292,389,20,22,Parking is limited and inconvenient.
+Turf equipped with floodlights for night games.,"['wifi', 'locker', 'parking', 'cafe']",2.6,80,292,41,87,Outstanding quality and friendly staff.
+Convenient and clean turf for community use.,"['parking', 'firstaid', 'cafe']",2.8,72,410,12,44,Turf was okay but could be cleaner.
+Budget-friendly option with basic amenities.,"['wifi', 'parking', 'restroom']",4.8,219,218,48,39,Overpriced for the facilities provided.
+Budget turf for beginners and recreational sports.,"['parking', 'locker', 'wifi']",1.6,187,317,40,53,Lacks proper lighting for evening games.
+Ideal for indoor/outdoor sports and fitness activities.,"['firstaid', 'cafe', 'parking']",3.3,209,213,16,45,Highly recommended for sports enthusiasts.
+Comfortable turf with quick booking system.,"['parking', 'locker', 'wifi']",3.0,156,244,8,24,Lacks proper lighting for evening games.
+"Ideal turf for football, cricket, and other sports.","['restroom', 'locker', 'showers']",3.4,230,125,40,80,"Could use better maintenance, average experience."
+"Turf with smooth grass, perfect for tennis matches.","['wifi', 'cafe', 'firstaid']",1.1,207,235,0,28,Amenities were not as advertised.
+Turf suitable for any kind of local or international event.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.5,88,402,1,69,Amazing experience with great amenities!
+Turf with amazing pitch quality and friendly staff.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.7,208,331,47,25,Staff was not very helpful.
+Great for evening games with floodlights.,"['wifi', 'locker', 'parking', 'cafe']",3.3,131,468,28,79,Turf was too crowded and noisy.
+Well-kept turf for tournaments and local leagues.,"['firstaid', 'cafe', 'parking']",3.8,149,175,32,63,Staff was not very helpful.
+Flexible turf that can be used for multiple sports.,"['parking', 'locker']",4.7,51,427,9,30,Ideal for family gatherings and events.
+Flexible turf that can be used for multiple sports.,"['parking', 'firstaid', 'cafe']",3.8,255,444,49,85,"Needs improvement, not up to expectations."
+Turf suitable for any kind of local or international event.,"['parking', 'locker']",1.6,126,401,39,66,Ideal for family gatherings and events.
+"Good location, well-maintained turf with affordable rates.","['wifi', 'showers', 'lockers']",3.3,270,388,20,92,Highly recommended for sports enthusiasts.
+Turf with good quality artificial grass for training.,"['parking', 'locker']",3.4,61,100,27,22,Turf was okay but could be cleaner.
+Top-notch turf with eco-friendly amenities and practices.,"['parking', 'firstaid', 'cafe']",2.7,88,246,10,95,"Limited facilities, not worth the price."
+Large turf with room for large-scale events.,"['parking', 'locker']",3.9,243,386,33,49,Parking is limited and inconvenient.
+Affordable and convenient turf with nearby food outlets.,"['parking', 'locker', 'wifi']",4.7,273,241,7,40,Overpriced for the facilities provided.
+Budget-friendly option with basic amenities.,"['wifi', 'showers', 'lockers']",4.7,62,152,21,47,Parking is limited and inconvenient.
+Versatile turf with different surface types for various sports.,"['wifi', 'parking', 'restroom']",2.8,95,403,7,81,"Limited facilities, not worth the price."
+Comfortable turf with all-season grass.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.5,204,168,48,52,"Good value for the price, will book again."
+Clean and modern turf for all your sports needs.,"['wifi', 'locker', 'parking', 'cafe']",4.9,162,460,14,54,Turf was okay but could be cleaner.
+Compact turf with essential facilities and affordable rates.,"['parking', 'locker', 'wifi']",4.4,282,189,16,71,Perfect for weekend games with friends.
+Good value turf with a reputation for cleanliness.,"['restroom', 'locker', 'showers']",1.5,66,319,22,53,Amenities were not as advertised.
+Family-friendly turf with easy access and spacious seating areas.,"['parking', 'locker']",4.7,153,291,23,60,Turf was too crowded and noisy.
+Versatile turf for school and community events.,"['parking', 'locker', 'wifi']",4.5,272,162,44,70,The turf is well-maintained and clean.
+Turf for team-building exercises and group games.,"['wifi', 'parking', 'restroom']",3.1,147,172,18,66,Amazing experience with great amenities!
+Professional quality grass for an outstanding playing experience.,"['parking', 'locker']",3.4,237,260,4,77,"Could use better maintenance, average experience."
+"Spacious, well-lit turf for competitive sports.","['wifi', 'locker', 'parking', 'cafe']",2.6,241,268,31,94,Overpriced for the facilities provided.
+"Clean and tidy turf, great for social events.","['restroom', 'locker', 'showers']",1.2,137,188,43,76,"Enjoyed playing here, will come back."
+Professional turf with excellent pitch quality.,"['wifi', 'cafe', 'firstaid']",2.3,158,275,0,42,Staff was not very helpful.
+Wide turf with multiple facilities and great lighting.,"['wifi', 'locker', 'parking', 'cafe']",4.2,212,368,22,67,Outstanding quality and friendly staff.
+"Outdoor turf with spectacular views, perfect for events.","['wifi', 'locker', 'parking', 'cafe']",1.0,289,172,36,41,"Needs improvement, not up to expectations."
+"Turf for organized events, tournaments, and casual use.","['wifi', 'cafe', 'firstaid']",2.3,119,344,7,36,"Good value for the price, will book again."
+"Spacious, modern turf with top-tier facilities.","['parking', 'firstaid', 'cafe']",2.6,260,176,12,88,Staff was not very helpful.
+Perfect for community sports and socializing events.,"['firstaid', 'cafe', 'parking']",3.1,207,258,7,30,Outstanding quality and friendly staff.
+Great for casual matches and corporate events.,"['wifi', 'showers', 'lockers']",4.7,248,423,22,34,Staff was not very helpful.
+Great for evening games with floodlights.,"['wifi', 'cafe', 'firstaid']",2.4,123,197,42,54,Turf was too crowded and noisy.
+Convenient location for school events and community sports.,"['parking', 'locker']",2.4,282,480,0,52,Amazing experience with great amenities!
+Ideal for indoor/outdoor sports and fitness activities.,"['wifi', 'showers', 'lockers']",4.0,273,201,44,35,Perfect for weekend games with friends.
+Flexible turf that can be used for multiple sports.,"['wifi', 'parking', 'restroom']",2.8,275,231,23,53,Highly recommended for sports enthusiasts.
+Comfortable and clean turf with modern facilities.,"['parking', 'locker', 'wifi']",1.9,112,201,34,85,Staff was not very helpful.
+Versatile turf for local leagues and community events.,"['wifi', 'locker', 'parking', 'cafe']",2.8,205,118,23,59,Parking is limited and inconvenient.
+Turf with amazing facilities and quiet surroundings.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.6,109,181,16,47,Turf was okay but could be cleaner.
+Ideal turf for training and small-scale tournaments.,"['firstaid', 'cafe', 'parking']",1.7,128,496,4,66,Amenities were not as advertised.
+"Ideal for local, school, and recreational leagues.","['parking', 'locker']",3.0,271,378,19,58,Turf was okay but could be cleaner.
+Ideal for all levels of competition and training.,"['parking', 'firstaid', 'cafe']",2.7,86,438,20,89,"Could use better maintenance, average experience."
+Flexible turf that can be used for multiple sports.,"['wifi', 'parking', 'restroom']",4.7,270,464,39,92,Parking is limited and inconvenient.
+Affordable turf with a mix of different facilities.,"['firstaid', 'cafe', 'parking']",2.4,71,430,30,39,Outstanding quality and friendly staff.
+High-quality turf with excellent lighting and ample parking.,"['wifi', 'showers', 'lockers']",3.3,245,228,45,20,"Needs improvement, not up to expectations."
+Affordable turf with essential facilities and good parking.,"['wifi', 'showers', 'lockers']",3.5,197,443,35,91,"Good value for the price, will book again."
+Budget turf for small team events and casual matches.,"['wifi', 'cafe', 'firstaid']",1.1,145,409,10,82,Amenities were not as advertised.
+Spacious turf with ample seating and dining options.,"['wifi', 'showers', 'lockers']",3.7,277,188,14,86,Outstanding quality and friendly staff.
+Convenient location with wide turf for sports.,"['parking', 'firstaid', 'cafe']",1.7,291,312,18,23,Perfect for weekend games with friends.
+Ideal turf for school tournaments and local leagues.,"['parking', 'locker']",4.8,117,242,6,77,Highly recommended for sports enthusiasts.
+Turf that offers great value for large bookings.,"['parking', 'firstaid', 'cafe']",1.6,268,164,27,44,Parking is limited and inconvenient.
+Versatile turf for local leagues and community events.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.7,241,175,42,66,Lacks proper lighting for evening games.
+Ideal for all levels of competition and training.,"['wifi', 'locker', 'parking', 'cafe']",1.3,66,298,4,57,Perfect for weekend games with friends.
+"Affordable but well-kept turf, perfect for community games.","['parking', 'locker', 'wifi']",5.0,61,242,4,34,Amenities were not as advertised.
+Turf suitable for group sports and tournaments.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.0,199,415,29,82,"Could use better maintenance, average experience."
+Compact yet versatile turf with well-maintained facilities.,"['wifi', 'parking', 'restroom']",3.4,194,192,31,40,Ideal for family gatherings and events.
+Great venue with many facilities and staff assistance.,"['parking', 'locker']",1.3,187,404,7,76,"Needs improvement, not up to expectations."
+Easy-to-access turf with good nearby transport links.,"['parking', 'locker']",4.0,167,323,9,72,Turf was too crowded and noisy.
+Turf suitable for any kind of local or international event.,"['firstaid', 'cafe', 'parking']",1.8,242,390,37,65,Turf was okay but could be cleaner.
+Ideal location for birthday parties and family events.,"['parking', 'firstaid', 'cafe']",4.6,71,201,46,33,"Needs improvement, not up to expectations."
+Turf suitable for group sports and tournaments.,"['parking', 'firstaid', 'cafe']",1.8,267,366,31,95,"Could use better maintenance, average experience."
+"Spacious, well-lit turf for competitive sports.","['restroom', 'locker', 'showers']",1.8,169,454,47,36,Overpriced for the facilities provided.
+Professional quality grass for an outstanding playing experience.,"['parking', 'firstaid', 'cafe']",1.1,259,209,27,58,Ideal for family gatherings and events.
+"Turf with basic amenities, good for community events.","['parking', 'locker', 'wifi']",2.9,99,429,16,28,"Needs improvement, not up to expectations."
+Turf suitable for high-intensity training and matches.,"['parking', 'firstaid', 'cafe']",3.3,63,364,30,96,Staff was not very helpful.
+Spacious turf with room for larger events and teams.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.3,241,102,7,98,Turf was okay but could be cleaner.
+Spacious and clean turf for large tournaments.,"['wifi', 'parking', 'restroom']",4.1,224,184,39,25,"Enjoyed playing here, will come back."
+Affordable and convenient turf with nearby food outlets.,"['parking', 'locker', 'wifi']",2.8,78,381,24,42,Turf was okay but could be cleaner.
+Ideal turf for training and small-scale tournaments.,"['wifi', 'locker', 'parking', 'cafe']",3.1,253,427,8,78,Perfect for weekend games with friends.
+Great for training sessions with a convenient location.,"['wifi', 'showers', 'lockers']",2.8,213,403,1,65,Outstanding quality and friendly staff.
+Turf suitable for group sports and tournaments.,"['firstaid', 'cafe', 'parking']",2.6,276,216,14,57,Overpriced for the facilities provided.
+Spacious turf with room for larger events and teams.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.2,229,320,49,33,Lacks proper lighting for evening games.
+Affordable turf with essential facilities and good parking.,"['parking', 'firstaid', 'cafe']",1.6,174,253,2,91,Parking is limited and inconvenient.
+Budget turf for small team events and casual matches.,"['wifi', 'parking', 'restroom']",1.7,253,252,48,81,Lacks proper lighting for evening games.
+High-quality turf with excellent lighting and ample parking.,"['wifi', 'showers', 'lockers']",4.4,56,111,35,54,Staff was not very helpful.
+Turf suitable for group sports and tournaments.,"['parking', 'locker']",4.8,78,232,3,38,"Needs improvement, not up to expectations."
+Premium turf with modern facilities and professional-grade grass.,"['restroom', 'locker', 'showers']",2.5,188,403,13,49,Overpriced for the facilities provided.
+"Affordable but well-kept turf, perfect for community games.","['restroom', 'firstaid', 'cafe', 'wifi']",2.1,82,392,40,97,Perfect for weekend games with friends.
+Great atmosphere and top-notch maintenance.,"['parking', 'firstaid', 'cafe']",3.6,183,399,40,44,Perfect for weekend games with friends.
+Quiet and clean turf for friendly competitions.,"['parking', 'locker', 'wifi']",2.6,160,327,24,59,Lacks proper lighting for evening games.
+Popular venue for corporate and team events with all amenities included.,"['parking', 'locker', 'wifi']",1.1,128,370,49,33,Excellent services and well-organized.
+Well-maintained turf with well-designed infrastructure.,"['wifi', 'parking', 'restroom']",1.6,209,142,9,45,Ideal for family gatherings and events.
+Well-known turf with spacious fields for large events.,"['parking', 'locker', 'wifi']",3.9,228,442,20,41,Great location with easy parking access.
+"Spacious, modern turf with top-tier facilities.","['wifi', 'parking', 'restroom']",3.6,252,425,35,67,"Limited facilities, not worth the price."
+Spacious and clean turf for large tournaments.,"['wifi', 'showers', 'lockers']",1.1,107,401,11,70,Lacks proper lighting for evening games.
+Affordable and convenient turf with nearby food outlets.,"['restroom', 'locker', 'showers']",1.9,264,463,26,22,"Good value for the price, will book again."
+Conveniently located turf with nearby public transport.,"['wifi', 'cafe', 'firstaid']",1.9,75,478,39,61,Lacks proper lighting for evening games.
+Large venue turf with good infrastructure.,"['parking', 'locker']",3.7,275,120,1,38,"Needs improvement, not up to expectations."
+Convenient and clean turf for community use.,"['parking', 'locker']",1.1,223,206,12,92,"Good value for the price, will book again."
+Professional-standard turf for team games.,"['parking', 'firstaid', 'cafe']",1.4,275,435,31,47,Overpriced for the facilities provided.
+Good-sized turf with reliable security measures.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.2,78,402,30,64,"Could use better maintenance, average experience."
+"Turf with soundproofed surroundings, ideal for events.","['parking', 'locker']",1.7,53,216,15,90,Perfect for weekend games with friends.
+Ideal location for birthday parties and family events.,"['parking', 'locker', 'wifi']",3.6,258,223,31,97,Staff was not very helpful.
+Conveniently located turf with nearby public transport.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.0,148,498,31,82,Staff was not very helpful.
+Turf with adequate seating and viewing areas.,"['parking', 'locker']",1.4,190,380,33,92,Great location with easy parking access.
+"Simple turf, good for friendly games and casual matches.","['wifi', 'parking', 'restroom']",2.0,282,391,10,38,Turf was okay but could be cleaner.
+Newly renovated turf with modern facilities.,"['wifi', 'parking', 'restroom']",3.9,88,302,9,66,Ideal for family gatherings and events.
+Turf with great support for event hosting.,"['wifi', 'parking', 'restroom']",4.4,64,150,14,33,"Limited facilities, not worth the price."
+Comfortable and clean turf with modern facilities.,"['parking', 'locker', 'wifi']",4.3,168,370,16,57,Excellent services and well-organized.
+Budget-friendly option with basic amenities.,"['parking', 'locker', 'wifi']",2.6,78,423,39,72,"Needs improvement, not up to expectations."
+Great venue with many facilities and staff assistance.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.7,206,376,17,80,Amazing experience with great amenities!
+Comfortable and clean turf with modern facilities.,"['wifi', 'locker', 'parking', 'cafe']",1.8,124,240,8,55,The turf is well-maintained and clean.
+Budget turf for beginners and recreational sports.,"['restroom', 'locker', 'showers']",2.2,165,374,24,59,Turf was okay but could be cleaner.
+Turf with professional pitch maintenance.,"['parking', 'locker', 'wifi']",4.6,81,389,39,49,"Could use better maintenance, average experience."
+Flexible turf that can be used for multiple sports.,"['parking', 'locker', 'wifi']",1.1,179,433,13,28,Amenities were not as advertised.
+"Turf for organized events, tournaments, and casual use.","['restroom', 'firstaid', 'cafe', 'wifi']",1.3,224,480,24,83,The turf is well-maintained and clean.
+Turf with multiple seating arrangements.,"['wifi', 'locker', 'parking', 'cafe']",1.8,255,472,49,52,"Good value for the price, will book again."
+Great for casual matches and corporate events.,"['parking', 'locker', 'wifi']",1.1,133,151,21,71,Great location with easy parking access.
+"Turf with premium-quality grass, suitable for all types of sports.","['parking', 'locker', 'wifi']",1.7,71,126,29,33,"Could use better maintenance, average experience."
+Affordable and convenient turf with nearby food outlets.,"['wifi', 'showers', 'lockers']",3.3,252,256,19,94,Turf was okay but could be cleaner.
+"Clean and tidy turf, great for social events.","['restroom', 'locker', 'showers']",2.7,76,338,20,72,Great location with easy parking access.
+Turf with comfortable seating and shaded areas.,"['wifi', 'locker', 'parking', 'cafe']",4.6,244,255,43,78,Lacks proper lighting for evening games.
+Budget turf for small team events and casual matches.,"['parking', 'locker']",4.3,130,390,31,97,Lacks proper lighting for evening games.
+"Perfect location for evening games, with floodlights.","['wifi', 'locker', 'parking', 'cafe']",2.4,175,235,45,60,Highly recommended for sports enthusiasts.
+Conveniently located turf with nearby public transport.,"['restroom', 'locker', 'showers']",2.0,285,243,48,87,Perfect for weekend games with friends.
+Family-friendly environment with clean facilities.,"['firstaid', 'cafe', 'parking']",2.5,233,205,20,87,Lacks proper lighting for evening games.
+"Outdoor turf with spectacular views, perfect for events.","['firstaid', 'cafe', 'parking']",3.4,141,257,34,27,Staff was not very helpful.
+Ideal turf for training and small-scale tournaments.,"['parking', 'locker', 'wifi']",2.1,270,245,31,21,Lacks proper lighting for evening games.
+"Clean and tidy turf, great for social events.","['parking', 'locker']",3.5,70,101,29,60,Lacks proper lighting for evening games.
+Turf with professional pitch maintenance.,"['parking', 'locker']",2.6,96,176,38,74,"Needs improvement, not up to expectations."
+Stylish turf with relaxing environment.,"['wifi', 'cafe', 'firstaid']",3.2,257,231,48,35,Lacks proper lighting for evening games.
+Professional-grade turf with excellent drainage system.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.7,150,189,11,81,Overpriced for the facilities provided.
+Family-friendly environment with clean facilities.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.2,236,444,40,67,Amazing experience with great amenities!
+Turf with amazing facilities and quiet surroundings.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.8,133,449,46,49,Excellent services and well-organized.
+Well-known turf with spacious fields for large events.,"['parking', 'locker', 'wifi']",4.1,55,362,17,31,Great location with easy parking access.
+Easy-to-book turf with simple user interface.,"['firstaid', 'cafe', 'parking']",1.6,196,450,20,54,"Could use better maintenance, average experience."
+Turf suitable for any kind of local or international event.,"['parking', 'locker']",4.5,234,207,12,30,The turf is well-maintained and clean.
+Convenient location for school events and community sports.,"['firstaid', 'cafe', 'parking']",2.9,246,173,20,83,The turf is well-maintained and clean.
+Spacious turf with room for larger events and teams.,"['parking', 'locker']",4.6,180,138,7,69,Lacks proper lighting for evening games.
+Easy-to-access turf with good nearby transport links.,"['restroom', 'locker', 'showers']",4.2,50,496,45,40,Parking is limited and inconvenient.
+Turf with high-end lighting system and regular maintenance.,"['wifi', 'cafe', 'firstaid']",2.7,107,258,39,88,"Needs improvement, not up to expectations."
+Premium turf for corporate team-building events.,"['wifi', 'locker', 'parking', 'cafe']",1.1,173,170,45,67,"Good value for the price, will book again."
+Well-maintained turf with well-designed infrastructure.,"['wifi', 'locker', 'parking', 'cafe']",2.1,215,411,6,39,Outstanding quality and friendly staff.
+Wide turf with multiple facilities and great lighting.,"['wifi', 'showers', 'lockers']",3.2,64,340,22,86,"Limited facilities, not worth the price."
+Affordable turf with great customer feedback.,"['firstaid', 'cafe', 'parking']",3.5,211,397,43,63,Parking is limited and inconvenient.
+"Turf with premium grass, suitable for all types of games.","['firstaid', 'cafe', 'parking']",2.0,238,135,31,52,Great location with easy parking access.
+Versatile turf for local leagues and community events.,"['wifi', 'showers', 'lockers']",1.6,212,183,10,92,"Enjoyed playing here, will come back."
+Turf suitable for group sports and tournaments.,"['wifi', 'locker', 'parking', 'cafe']",4.3,113,473,21,80,"Good value for the price, will book again."
+"Clean and tidy turf, great for social events.","['parking', 'locker']",4.9,290,362,21,28,Great location with easy parking access.
+Turf with secure surroundings and easy access.,"['firstaid', 'cafe', 'parking']",3.1,74,409,42,87,"Could use better maintenance, average experience."
+Great turf for training camps and local competitions.,"['restroom', 'locker', 'showers']",1.7,73,484,24,54,Amenities were not as advertised.
+Versatile turf with different surface types for various sports.,"['wifi', 'cafe', 'firstaid']",2.1,61,271,21,84,Ideal for family gatherings and events.
+A well-known turf with great customer service.,"['parking', 'locker']",1.1,67,475,27,27,"Good value for the price, will book again."
+Turf suitable for high-intensity training and matches.,"['wifi', 'showers', 'lockers']",4.7,64,272,28,64,"Needs improvement, not up to expectations."
+Versatile turf for school and community events.,"['wifi', 'parking', 'restroom']",1.5,285,461,12,66,Highly recommended for sports enthusiasts.
+Versatile turf for all kinds of local sports events.,"['firstaid', 'cafe', 'parking']",3.3,257,146,17,59,Ideal for family gatherings and events.
+Affordable turf with a mix of different facilities.,"['parking', 'locker', 'wifi']",2.1,76,478,1,95,Overpriced for the facilities provided.
+Turf with multiple seating arrangements.,"['parking', 'firstaid', 'cafe']",3.2,121,240,28,73,The turf is well-maintained and clean.
+Easy-to-access turf with good nearby transport links.,"['wifi', 'locker', 'parking', 'cafe']",3.6,109,474,20,95,Outstanding quality and friendly staff.
+Turf with high-end lighting system and regular maintenance.,"['wifi', 'showers', 'lockers']",4.3,223,217,14,65,"Enjoyed playing here, will come back."
+Professional-standard turf for team games.,"['wifi', 'cafe', 'firstaid']",1.8,266,376,26,66,Staff was not very helpful.
+Well-maintained turf with locker rooms and showers.,"['parking', 'locker']",1.0,194,313,49,34,Turf was okay but could be cleaner.
+Convenient turf with all basic amenities.,"['restroom', 'locker', 'showers']",1.5,142,319,30,38,"Needs improvement, not up to expectations."
+Affordable turf with a mix of different facilities.,"['parking', 'locker', 'wifi']",4.6,102,492,14,45,Highly recommended for sports enthusiasts.
+Compact turf with essential facilities and affordable rates.,"['wifi', 'cafe', 'firstaid']",4.5,57,125,22,71,Lacks proper lighting for evening games.
+Ideal location for birthday parties and family events.,"['firstaid', 'cafe', 'parking']",3.4,128,108,23,41,Outstanding quality and friendly staff.
+Affordable turf with great customer feedback.,"['wifi', 'showers', 'lockers']",3.4,76,370,43,40,Overpriced for the facilities provided.
+Versatile turf for school and community events.,"['parking', 'firstaid', 'cafe']",3.7,223,109,12,70,Amenities were not as advertised.
+Convenient and clean turf for community use.,"['wifi', 'showers', 'lockers']",1.7,99,477,21,57,The turf is well-maintained and clean.
+Turf suitable for any kind of local or international event.,"['wifi', 'showers', 'lockers']",4.7,293,220,42,39,Ideal for family gatherings and events.
+High-quality turf with strong drainage system.,"['restroom', 'locker', 'showers']",2.7,248,224,36,48,Outstanding quality and friendly staff.
+Outdoor turf for sports lovers and fitness enthusiasts.,"['restroom', 'locker', 'showers']",2.5,180,269,32,70,Amenities were not as advertised.
+Turf with comfortable seating and shaded areas.,"['restroom', 'locker', 'showers']",3.1,142,171,2,23,"Enjoyed playing here, will come back."
+Turf with good quality artificial grass for training.,"['parking', 'locker', 'wifi']",1.2,241,251,18,74,"Limited facilities, not worth the price."
+Convenient location for school events and community sports.,"['wifi', 'parking', 'restroom']",1.7,221,307,22,90,Outstanding quality and friendly staff.
+Clean and modern turf for all your sports needs.,"['parking', 'firstaid', 'cafe']",4.0,230,148,28,47,Highly recommended for sports enthusiasts.
+Turf with a wide area for competitive matches.,"['wifi', 'showers', 'lockers']",1.3,73,253,29,23,"Limited facilities, not worth the price."
+Comfortable and clean turf with modern facilities.,"['parking', 'locker', 'wifi']",3.4,109,446,38,41,"Enjoyed playing here, will come back."
+Convenient location for school events and community sports.,"['parking', 'locker']",2.0,171,392,43,95,Staff was not very helpful.
+Turf suitable for high-intensity training and matches.,"['wifi', 'parking', 'restroom']",2.6,180,167,46,64,"Needs improvement, not up to expectations."
+Spacious turf with ample seating and dining options.,"['wifi', 'locker', 'parking', 'cafe']",2.2,197,149,24,86,Turf was too crowded and noisy.
+Spacious turf with ample seating and dining options.,"['wifi', 'cafe', 'firstaid']",2.4,95,251,36,85,Turf was okay but could be cleaner.
+Flexible turf that can be used for multiple sports.,"['parking', 'firstaid', 'cafe']",3.9,64,118,46,53,Perfect for weekend games with friends.
+Beautiful turf for family sports days and activities.,"['parking', 'locker', 'wifi']",2.2,202,199,7,74,Great location with easy parking access.
+"Ideal for local, school, and recreational leagues.","['restroom', 'firstaid', 'cafe', 'wifi']",3.3,271,159,41,20,"Limited facilities, not worth the price."
+Turf with professional pitch maintenance.,"['parking', 'locker']",2.9,255,266,15,91,Overpriced for the facilities provided.
+High-quality turf with excellent lighting and ample parking.,"['parking', 'firstaid', 'cafe']",3.7,248,301,7,57,"Good value for the price, will book again."
+Ideal for indoor/outdoor sports and fitness activities.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.7,66,444,0,25,"Needs improvement, not up to expectations."
+Family-friendly environment with clean facilities.,"['wifi', 'locker', 'parking', 'cafe']",3.9,175,245,43,44,Overpriced for the facilities provided.
+Turf with clean environment and supportive staff.,"['restroom', 'locker', 'showers']",1.9,285,263,4,36,Ideal for family gatherings and events.
+Versatile turf for local leagues and community events.,"['wifi', 'parking', 'restroom']",1.1,133,341,2,80,Turf was okay but could be cleaner.
+Flexible turf that can be used for multiple sports.,"['wifi', 'showers', 'lockers']",2.0,277,168,0,31,"Good value for the price, will book again."
+"Turf with soundproofed surroundings, ideal for events.","['parking', 'locker']",3.4,58,274,3,25,"Limited facilities, not worth the price."
+Beautiful turf for family sports days and activities.,"['restroom', 'locker', 'showers']",1.2,215,148,39,46,Overpriced for the facilities provided.
+"Spacious, well-lit turf for competitive sports.","['parking', 'locker']",3.0,225,207,34,27,Amazing experience with great amenities!
+Quiet and clean turf for friendly competitions.,"['wifi', 'cafe', 'firstaid']",3.4,298,325,31,84,Amenities were not as advertised.
+Convenient location with wide turf for sports.,"['wifi', 'locker', 'parking', 'cafe']",2.3,237,260,41,76,Ideal for family gatherings and events.
+Turf equipped with floodlights for night games.,"['wifi', 'showers', 'lockers']",4.1,112,218,33,59,Staff was not very helpful.
+"Spacious, well-lit turf for competitive sports.","['wifi', 'cafe', 'firstaid']",1.4,263,248,42,33,Ideal for family gatherings and events.
+"Good location, well-maintained turf with affordable rates.","['wifi', 'cafe', 'firstaid']",1.3,295,249,24,54,"Limited facilities, not worth the price."
+Spacious turf with comfortable seating and great accessibility.,"['parking', 'locker']",3.9,294,392,9,67,Outstanding quality and friendly staff.
+High-quality turf with excellent lighting and ample parking.,"['wifi', 'showers', 'lockers']",3.0,166,242,20,75,Amazing experience with great amenities!
+Versatile turf for local leagues and community events.,"['restroom', 'locker', 'showers']",3.8,179,259,45,68,"Limited facilities, not worth the price."
+Large turf with room for large-scale events.,"['parking', 'firstaid', 'cafe']",2.7,137,110,38,32,Excellent services and well-organized.
+Convenient location with wide turf for sports.,"['parking', 'firstaid', 'cafe']",2.0,121,237,26,80,Amenities were not as advertised.
+"Affordable turf, great for casual matches and local tournaments.","['wifi', 'cafe', 'firstaid']",4.3,188,177,26,68,Perfect for weekend games with friends.
+Conveniently located turf with nearby public transport.,"['parking', 'locker']",4.2,113,176,1,65,Staff was not very helpful.
+Professional-standard turf for team games.,"['firstaid', 'cafe', 'parking']",3.8,254,353,40,81,Amenities were not as advertised.
+"Affordable but well-kept turf, perfect for community games.","['wifi', 'showers', 'lockers']",2.1,258,357,47,27,Turf was too crowded and noisy.
+Ideal for outdoor team games with strong infrastructure.,"['wifi', 'showers', 'lockers']",3.4,121,419,12,62,Overpriced for the facilities provided.
+Versatile turf for local leagues and community events.,"['parking', 'firstaid', 'cafe']",2.4,70,390,8,39,The turf is well-maintained and clean.
+Budget-friendly option with basic amenities.,"['wifi', 'parking', 'restroom']",1.4,67,362,35,58,Turf was okay but could be cleaner.
+Affordable turf with a mix of different facilities.,"['restroom', 'locker', 'showers']",4.7,271,184,21,68,Lacks proper lighting for evening games.
+Ideal for indoor/outdoor sports and fitness activities.,"['wifi', 'parking', 'restroom']",1.5,113,245,41,83,Perfect for weekend games with friends.
+Comfortable and clean turf with modern facilities.,"['parking', 'firstaid', 'cafe']",4.8,131,422,25,81,Perfect for weekend games with friends.
+Comfortable turf with all-season grass.,"['parking', 'firstaid', 'cafe']",2.8,159,141,11,73,Highly recommended for sports enthusiasts.
+Premium turf for corporate team-building events.,"['parking', 'firstaid', 'cafe']",1.7,288,473,16,28,"Limited facilities, not worth the price."
+Affordable and convenient turf with nearby food outlets.,"['parking', 'locker', 'wifi']",3.2,144,224,13,56,Great location with easy parking access.
+Modern turf with good safety measures.,"['restroom', 'locker', 'showers']",4.5,215,266,13,68,"Limited facilities, not worth the price."
+"Simple turf, good for friendly games and casual matches.","['wifi', 'parking', 'restroom']",3.9,81,340,33,60,Lacks proper lighting for evening games.
+Newly renovated turf with modern facilities.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.2,60,379,19,36,"Good value for the price, will book again."
+Turf for professional teams and local leagues.,"['wifi', 'showers', 'lockers']",3.6,94,287,10,40,Great location with easy parking access.
+Budget turf for beginners and recreational sports.,"['parking', 'locker', 'wifi']",3.8,266,401,15,70,Amazing experience with great amenities!
+"Spacious, well-lit turf for competitive sports.","['firstaid', 'cafe', 'parking']",4.4,82,118,30,78,Staff was not very helpful.
+Great for training sessions with a convenient location.,"['wifi', 'parking', 'restroom']",2.0,151,167,5,58,Perfect for weekend games with friends.
+Turf with clean environment and supportive staff.,"['restroom', 'firstaid', 'cafe', 'wifi']",3.0,218,317,18,74,Overpriced for the facilities provided.
+Stylish turf with relaxing environment.,"['wifi', 'showers', 'lockers']",1.9,185,201,36,60,Amenities were not as advertised.
+Versatile turf for school and community events.,"['wifi', 'showers', 'lockers']",5.0,60,141,3,58,Turf was okay but could be cleaner.
+Compact turf with essential facilities and affordable rates.,"['wifi', 'showers', 'lockers']",4.8,263,387,46,32,"Needs improvement, not up to expectations."
+Spacious turf for local games and friendly matches.,"['restroom', 'firstaid', 'cafe', 'wifi']",1.2,228,266,3,83,"Could use better maintenance, average experience."
+Spacious and clean turf for large tournaments.,"['wifi', 'cafe', 'firstaid']",3.8,137,208,19,30,Amazing experience with great amenities!
+Convenient location with wide turf for sports.,"['wifi', 'showers', 'lockers']",4.7,90,135,9,38,Amazing experience with great amenities!
+Convenient and clean turf for community use.,"['wifi', 'parking', 'restroom']",1.7,194,331,23,30,Overpriced for the facilities provided.
+"Turf with artificial grass, ideal for all-weather games.","['wifi', 'showers', 'lockers']",3.3,125,328,34,96,Parking is limited and inconvenient.
+"Turf with basic amenities, good for community events.","['wifi', 'parking', 'restroom']",4.7,170,452,25,65,Lacks proper lighting for evening games.
+"Freshly painted turf, safe for kids’ games.","['wifi', 'cafe', 'firstaid']",1.1,95,263,36,64,Perfect for weekend games with friends.
+Great for evening games with floodlights.,"['wifi', 'showers', 'lockers']",3.8,209,486,37,20,Overpriced for the facilities provided.
+Turf suitable for any kind of local or international event.,"['parking', 'locker', 'wifi']",2.2,256,172,20,59,Excellent services and well-organized.
+Affordable but great location for training camps.,"['wifi', 'parking', 'restroom']",4.7,129,235,39,38,Parking is limited and inconvenient.
+Convenient turf with all basic amenities.,"['firstaid', 'cafe', 'parking']",4.9,103,452,38,95,Amazing experience with great amenities!
+Comfortable turf with quick booking system.,"['parking', 'locker']",4.8,135,478,20,91,Staff was not very helpful.
+Turf with professional pitch maintenance.,"['restroom', 'firstaid', 'cafe', 'wifi']",2.9,141,169,9,91,Turf was too crowded and noisy.
+"Clean and tidy turf, great for social events.","['firstaid', 'cafe', 'parking']",4.4,197,295,37,80,"Needs improvement, not up to expectations."
+Ideal for all levels of competition and training.,"['restroom', 'firstaid', 'cafe', 'wifi']",4.4,210,368,45,31,Staff was not very helpful.
+Professional turf with excellent pitch quality.,"['wifi', 'parking', 'restroom']",2.3,251,148,3,80,Amenities were not as advertised.

@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import { connect } from '@/dbconfig/dbconfig'; // Adjust the import based on your folder structure
 import { Review } from '@/models/model'; // Adjust the import based on your folder structure
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-    const { id } = params;
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
 
     try {
         await connect();
@@ -22,8 +22,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     }
 }
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
-    const { id } = params;
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
 
     try {
         await connect();

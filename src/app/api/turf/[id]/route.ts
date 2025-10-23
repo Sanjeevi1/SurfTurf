@@ -2,8 +2,8 @@ import { connect } from '@/dbconfig/dbconfig';
 import { Turf } from '@/models/model';
 import { NextResponse } from 'next/server';
 
-export async function GET(req, { params }) {
-    const { id } = params;
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
 
     try {
         await connect();

@@ -61,7 +61,7 @@ export function NavBar() {
                     </Dropdown.Header>
                     <Dropdown.Item> <a href="/customer/turf/saved">Saved Turfs</a></Dropdown.Item>
                     <Dropdown.Item>
-                        <a href="/bookings">My Bookings</a>
+                        <a href="/customer/bookings">My Bookings</a>
 
                     </Dropdown.Item>
                     <Dropdown.Divider />

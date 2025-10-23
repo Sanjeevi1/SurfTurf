@@ -1,6 +1,6 @@
 // components/TurfCard.tsx
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { FaMapMarkerAlt, FaShower, FaParking, FaWifi, FaTrash } from 'react-icons/fa';
 
 import { BsBookmarkFill } from 'react-icons/bs';
@@ -37,7 +37,7 @@ interface TurfCardProps {
     turf: Turf;
 }
 
-const TurfCard: React.FC<TurfCardProps> = ({ turf, role, refreshTurfList }) => {
+const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList }) => {
     const [isSaved, setIsSaved] = useState(false);
     const [data, setdata] = useState(null)
 
@@ -154,15 +154,19 @@ const TurfCard: React.FC<TurfCardProps> = ({ turf, role, refreshTurfList }) => {
 
                 <div className="flex justify-between items-center mt-4">
                     <span className="text-xl font-bold text-gray-900">Rs.{turf.pricePerHour}/hour</span>
-                    <button
-                        className="bg-yellow-300 text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
-                    >
-                        Book Now
-                    </button>
+                    {role !== 'owner' && role !== 'admin' && (
+                        <button
+                            className="bg-yellow-300 text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
+                        >
+                            Book Now
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
     );
-};
+});
+
+TurfCard.displayName = 'TurfCard';
 
 export default TurfCard;

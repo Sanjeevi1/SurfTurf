@@ -1,13 +1,24 @@
 "use client";
 import Link from "next/link";
-import { XIcon } from "@heroicons/react/solid"; // For the cross icon
+import { XIcon } from "@heroicons/react/solid";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
-
 import { UploadDropzone } from "@/utils/uploadthing";
 import Image from "next/image";
+import { 
+    MapPin, 
+    Clock, 
+    Users, 
+    DollarSign, 
+    Image as ImageIcon, 
+    Plus, 
+    Trash2,
+    ArrowLeft,
+    Save
+} from "lucide-react";
+import PageLayout from '@/components/ui/PageLayout';
 
 export default function AddPage() {
     const router = useRouter();
@@ -52,16 +63,16 @@ export default function AddPage() {
     const [slots, setSlots] = React.useState<Slot[]>([]);
 
     const handleSlotChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type } = e.target;
         setSlot({
             ...slot,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: value,
         });
     };
     const removeSlot = (index: number) => {
         setSlots(slots.filter((_, i) => i !== index));
     };
-    const removeImage = (url) => {
+    const removeImage = (url: string) => {
         setTurf((prev) => ({
             ...prev,
             images: prev.images.filter((image) => image !== url)
@@ -116,141 +127,393 @@ export default function AddPage() {
     };
 
     return (
-        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-            <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">Add new turf details</h2>
-            <form className="my-8" onSubmit={handleSubmit}>
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="name">Name</label>
-                    <input id="name" type="text" onChange={(e) => setTurf({ ...turf, name: e.target.value })} />
-                </LabelInputContainer>
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-8">
+            <div className="max-w-4xl mx-auto px-4">
+                {/* Header */}
+                <div className="mb-8">
+                    <div className="flex items-center mb-4">
+                        <Link 
+                            href="/admin/home"
+                            className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+                        >
+                            <ArrowLeft className="h-5 w-5 mr-2" />
+                            Back to Dashboard
+                        </Link>
+                    </div>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Add New Turf</h1>
+                    <p className="text-gray-600">Create a new turf listing for your business</p>
+                </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="description">Description</label>
-                    <input id="description" type="text" onChange={(e) => setTurf({ ...turf, description: e.target.value })} />
-                </LabelInputContainer>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Basic Information */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                            <MapPin className="h-5 w-5 mr-2 text-blue-600" />
+                            Basic Information
+                        </h2>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label htmlFor="name" className="text-sm font-medium text-gray-700">
+                                    Turf Name *
+                                </label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    placeholder="Enter turf name"
+                                    value={turf.name}
+                                    onChange={(e) => setTurf({ ...turf, name: e.target.value })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="pricePerHour">Price per Hour</label>
-                    <input id="pricePerHour" type="number" onChange={(e) => setTurf({ ...turf, pricePerHour: e.target.value })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="city" className="text-sm font-medium text-gray-700">
+                                    City *
+                                </label>
+                                <input
+                                    id="city"
+                                    type="text"
+                                    placeholder="Enter city"
+                                    value={turf.city}
+                                    onChange={(e) => setTurf({ ...turf, city: e.target.value })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="city">City</label>
-                    <input id="city" type="text" onChange={(e) => setTurf({ ...turf, city: e.target.value })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="turfCategory" className="text-sm font-medium text-gray-700">
+                                    Category *
+                                </label>
+                                <select
+                                    id="turfCategory"
+                                    value={turf.turfCategory}
+                                    onChange={(e) => setTurf({ ...turf, turfCategory: e.target.value })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                >
+                                    <option value="">Select category</option>
+                                    <option value="Football">Football</option>
+                                    <option value="Cricket">Cricket</option>
+                                    <option value="Basketball">Basketball</option>
+                                    <option value="Tennis">Tennis</option>
+                                    <option value="Badminton">Badminton</option>
+                                </select>
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="amenities">Amenities (comma-separated)</label>
-                    <input id="amenities" type="text" onChange={(e) => setTurf({ ...turf, amenities: e.target.value })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="pricePerHour" className="text-sm font-medium text-gray-700 flex items-center">
+                                    <DollarSign className="h-4 w-4 mr-1" />
+                                    Price per Hour (₹) *
+                                </label>
+                                <input
+                                    id="pricePerHour"
+                                    type="number"
+                                    placeholder="Enter price per hour"
+                                    value={turf.pricePerHour}
+                                    onChange={(e) => setTurf({ ...turf, pricePerHour: e.target.value })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
+                        </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="turfCategory">Category</label>
-                    <input id="turfCategory" type="text" onChange={(e) => setTurf({ ...turf, turfCategory: e.target.value })} />
-                </LabelInputContainer>
+                        <div className="mt-6 space-y-2">
+                            <label htmlFor="description" className="text-sm font-medium text-gray-700">
+                                Description *
+                            </label>
+                            <textarea
+                                id="description"
+                                placeholder="Describe your turf, facilities, and what makes it special..."
+                                value={turf.description}
+                                onChange={(e) => setTurf({ ...turf, description: e.target.value })}
+                                rows={4}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                                required
+                            />
+                        </div>
+                    </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="dimensionsLength">Length</label>
-                    <input id="dimensionsLength" type="number" onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, length: e.target.value } })} />
-                </LabelInputContainer>
+                    {/* Dimensions & Location */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                            <MapPin className="h-5 w-5 mr-2 text-green-600" />
+                            Dimensions & Location
+                        </h2>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label htmlFor="dimensionsLength" className="text-sm font-medium text-gray-700">
+                                    Length (meters) *
+                                </label>
+                                <input
+                                    id="dimensionsLength"
+                                    type="number"
+                                    placeholder="Enter length"
+                                    value={turf.dimensions.length}
+                                    onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, length: e.target.value } })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="dimensionsWidth">Width</label>
-                    <input id="dimensionsWidth" type="number" onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, width: e.target.value } })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="dimensionsWidth" className="text-sm font-medium text-gray-700">
+                                    Width (meters) *
+                                </label>
+                                <input
+                                    id="dimensionsWidth"
+                                    type="number"
+                                    placeholder="Enter width"
+                                    value={turf.dimensions.width}
+                                    onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, width: e.target.value } })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="latitude">Latitude</label>
-                    <input id="latitude" type="number" onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, latitude: e.target.value } })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="latitude" className="text-sm font-medium text-gray-700">
+                                    Latitude *
+                                </label>
+                                <input
+                                    id="latitude"
+                                    type="number"
+                                    step="any"
+                                    placeholder="Enter latitude"
+                                    value={turf.locationCoordinates.latitude}
+                                    onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, latitude: e.target.value } })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="longitude">Longitude</label>
-                    <input id="longitude" type="number" onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, longitude: e.target.value } })} />
-                </LabelInputContainer>
+                            <div className="space-y-2">
+                                <label htmlFor="longitude" className="text-sm font-medium text-gray-700">
+                                    Longitude *
+                                </label>
+                                <input
+                                    id="longitude"
+                                    type="number"
+                                    step="any"
+                                    placeholder="Enter longitude"
+                                    value={turf.locationCoordinates.longitude}
+                                    onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, longitude: e.target.value } })}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-                {/* Upload Component */}
+                    {/* Amenities */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                            <Users className="h-5 w-5 mr-2 text-purple-600" />
+                            Amenities
+                        </h2>
+                        
+                        <div className="space-y-2">
+                            <label htmlFor="amenities" className="text-sm font-medium text-gray-700">
+                                Amenities (comma-separated) *
+                            </label>
+                            <input
+                                id="amenities"
+                                type="text"
+                                placeholder="e.g., Parking, Restroom, Changing Room, Floodlights"
+                                value={turf.amenities}
+                                onChange={(e) => setTurf({ ...turf, amenities: e.target.value })}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    {/* Image Upload */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                            <ImageIcon className="h-5 w-5 mr-2 text-orange-600" />
+                            Turf Images
+                        </h2>
+                        
                 <UploadDropzone
     endpoint="imageUploader"
     onClientUploadComplete={(res) => {
         if (res && res.length > 0) {
             setTurf((prevTurf) => ({
                 ...prevTurf,
-                images: [...prevTurf.images, ...res.map((file) => file.url)], // Append new images to the array
+                                        images: [...prevTurf.images, ...res.map((file) => file.url)],
             }));
-            toast.success("Upload Completed");
+                                    toast.success("Images uploaded successfully!");
         }
     }}
 />
 
-                {/* Display Images with Remove Option */}
-                <div className="mt-4 grid grid-cols-2 gap-4">
+                        {/* Display Images */}
+                        {turf.images.length > 0 && (
+                            <div className="mt-6">
+                                <h3 className="text-sm font-medium text-gray-700 mb-3">Uploaded Images</h3>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {turf.images.map((url, index) => (
-                        <div key={index} className="relative w-full h-32">
-                            <Image src={url} alt={`Turf Image ${index + 1}`} layout="fill" objectFit="cover" className="rounded-lg" />
+                                        <div key={index} className="relative group">
+                                            <div className="aspect-square rounded-lg overflow-hidden">
+                                                <Image 
+                                                    src={url} 
+                                                    alt={`Turf Image ${index + 1}`} 
+                                                    width={200} 
+                                                    height={200} 
+                                                    className="w-full h-full object-cover" 
+                                                />
+                                            </div>
                             <button
                                 type="button"
-                                className="absolute top-1 right-1 bg-red-600 rounded-full p-1"
+                                                className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                                 onClick={() => removeImage(url)}
                             >
-                                <XIcon className="h-5 w-5 text-white" />
+                                                <Trash2 className="h-4 w-4" />
                             </button>
                         </div>
                     ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Time Slots */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                            <Clock className="h-5 w-5 mr-2 text-indigo-600" />
+                            Available Time Slots
+                        </h2>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <div className="space-y-2">
+                                <label htmlFor="date" className="text-sm font-medium text-gray-700">
+                                    Date *
+                                </label>
+                                <input
+                                    id="date"
+                                    name="date"
+                                    type="date"
+                                    value={slot.date}
+                                    onChange={handleSlotChange}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label htmlFor="startTime" className="text-sm font-medium text-gray-700">
+                                    Start Time *
+                                </label>
+                                <input
+                                    id="startTime"
+                                    name="startTime"
+                                    type="time"
+                                    value={slot.startTime}
+                                    onChange={handleSlotChange}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label htmlFor="endTime" className="text-sm font-medium text-gray-700">
+                                    End Time *
+                                </label>
+                                <input
+                                    id="endTime"
+                                    name="endTime"
+                                    type="time"
+                                    value={slot.endTime}
+                                    onChange={handleSlotChange}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
                 </div>
 
-                {/* Slot input Container */}
-                <div className="mb-4">
-                    <h3 className="font-medium text-lg mb-2">Add Slot</h3>
-                    <LabelInputContainer>
-                        <label htmlFor="date">Date</label>
-                        <input id="date" name="date" type="date" value={slot.date} onChange={handleSlotChange} />
-                    </LabelInputContainer>
-                    <LabelInputContainer>
-                        <label htmlFor="startTime">Start Time</label>
-                        <input id="startTime" name="startTime" type="time" value={slot.startTime} onChange={handleSlotChange} />
-                    </LabelInputContainer>
-                    <LabelInputContainer>
-                        <label htmlFor="endTime">End Time</label>
-                        <input id="endTime" name="endTime" type="time" value={slot.endTime} onChange={handleSlotChange} />
-                    </LabelInputContainer>
-                    <LabelInputContainer>
-                        <label htmlFor="maxPlayers">Max Players</label>
-                        <input id="maxPlayers" name="maxPlayers" type="number" value={slot.maxPlayers} onChange={handleSlotChange} />
-                    </LabelInputContainer>
-                    <button type="button" onClick={addSlot} className="bg-blue-500 text-white px-4 py-2 rounded-md">Add Slot</button>
+                            <div className="space-y-2">
+                                <label htmlFor="maxPlayers" className="text-sm font-medium text-gray-700 flex items-center">
+                                    <Users className="h-4 w-4 mr-1" />
+                                    Max Players *
+                                </label>
+                                <input
+                                    id="maxPlayers"
+                                    name="maxPlayers"
+                                    type="number"
+                                    value={slot.maxPlayers}
+                                    onChange={handleSlotChange}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
                 </div>
+
+                        <button
+                            type="button"
+                            onClick={addSlot}
+                            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                            <Plus className="h-4 w-4 mr-2" />
+                            Add Time Slot
+                        </button>
+
                  {/* Display Added Slots */}
+                        {slots.length > 0 && (
                  <div className="mt-6">
-    <h3 className="font-medium text-lg mb-2">Available Slots</h3>
-    <ul className="space-y-4">
+                                <h3 className="text-sm font-medium text-gray-700 mb-3">Added Time Slots</h3>
+                                <div className="space-y-3">
         {slots.map((slot, index) => (
-            <li key={index} className="p-4 border rounded-md relative">
-                <p><strong>Date:</strong> {slot.date}</p>
-                <p><strong>Start Time:</strong> {slot.startTime}</p>
-                <p><strong>End Time:</strong> {slot.endTime}</p>
-                <p><strong>Max Players:</strong> {slot.maxPlayers}</p>
-                <p><strong>Status:</strong> {slot.isBooked ? "Booked" : "Available"} - {slot.status}</p>
-                
-                {/* Remove button */}
+                                        <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                            <div className="flex-1">
+                                                <div className="flex items-center space-x-4 text-sm">
+                                                    <span className="font-medium">{slot.date}</span>
+                                                    <span className="text-gray-500">{slot.startTime} - {slot.endTime}</span>
+                                                    <span className="text-gray-500">{slot.maxPlayers} players</span>
+                                                    <span className={`px-2 py-1 rounded-full text-xs ${
+                                                        slot.status === 'unlocked' 
+                                                            ? 'bg-green-100 text-green-800' 
+                                                            : 'bg-red-100 text-red-800'
+                                                    }`}>
+                                                        {slot.status}
+                                                    </span>
+                                                </div>
+                                            </div>
                 <button
                     type="button"
-                    className="absolute top-2 right-2 bg-red-500 rounded-full p-1"
+                                                className="text-red-500 hover:text-red-700 p-1"
                     onClick={() => removeSlot(index)}
                 >
-                    <XIcon className="h-5 w-5 text-white" />
+                                                <Trash2 className="h-4 w-4" />
                 </button>
-            </li>
+                                        </div>
         ))}
-    </ul>
+                                </div>
+                            </div>
+                        )}
 </div>
 
-                <button className="bg-gradient-to-br from-black to-neutral-600 w-full text-white rounded-md h-10 font-medium" type="submit">Add &rarr;</button>
+                    {/* Submit Button */}
+                    <div className="flex justify-end space-x-4">
+                        <Link
+                            href="/admin/home"
+                            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                            Cancel
+                        </Link>
+                        <button
+                            type="submit"
+                            className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        >
+                            <Save className="h-4 w-4 mr-2" />
+                            Create Turf
+                        </button>
+                    </div>
             </form>
+            </div>
         </div>
     );
 }
 
-const LabelInputContainer = ({ children, className }: { children: React.ReactNode; className?: string; }) => (
-    <div className="flex flex-col space-y-2 w-full">{children}</div>
-);

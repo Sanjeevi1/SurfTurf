@@ -52,36 +52,34 @@ export default function Home() {
     const [topRankedTurfs, setTopRankedTurfs] = useState([]);
 
     useEffect(() => {
-        const fetchTopRankedTurfs = async () => {
+        const fetchTopRatedTurfs = async () => {
             try {
-                // Fetch the top-ranked turf data (which includes predicted_score)
-                const response = await axios.get(`/api/top-ranked-turfs`);
-                const topRankedTurfs = response.data;
-
-                // Fetch all turfs to filter for the top-ranked ones
+                // Fetch all turfs
                 const allTurfsResponse = await axios.get(`/api/turf`);
                 const allTurfs = allTurfsResponse.data;
 
-                // Filter turfs that match top-ranked turf IDs and include predicted_score
-                const filteredTopRankedTurfs = allTurfs.filter((turf) =>
-                    topRankedTurfs.some((topTurf) => topTurf.id === turf._id)
-                );
+                // Sort turfs by price (assuming higher price = better quality) and take top 3
+                // You can modify this logic based on your rating system
+                const sortedTurfs = allTurfs
+                    .sort((a, b) => b.pricePerHour - a.pricePerHour)
+                    .slice(0, 3);
 
-                // Sort the filtered turfs by predicted_score in descending order
-                const sortedTopRankedTurfs = filteredTopRankedTurfs.sort((a, b) =>
-                    b.predicted_score - a.predicted_score
-                );
-
-                // Set the sorted top-ranked turfs to the state
-                setTopRankedTurfs(sortedTopRankedTurfs);
+                setTopRankedTurfs(sortedTurfs);
             } catch (error) {
-                console.error("Error fetching top-ranked turfs:", error);
+                console.error("Error fetching top-rated turfs:", error);
+                // Fallback: show first 3 turfs if sorting fails
+                try {
+                    const fallbackResponse = await axios.get(`/api/turf`);
+                    setTopRankedTurfs(fallbackResponse.data.slice(0, 3));
+                } catch (fallbackError) {
+                    console.error("Fallback fetch also failed:", fallbackError);
+                }
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchTopRankedTurfs();
+        fetchTopRatedTurfs();
     }, []);
 
     const getUserDetails = async () => {
@@ -98,31 +96,55 @@ export default function Home() {
     }, []);
 
     return (
-        <>
+        <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
             <Hero isLoggedIn={true} />
-            <div className="font-bold text-black text-center text-2xl">Category</div>
-            <Category />
-            <br />
-            <br />
-            <h1 className="font-bold text-black  text-2xl">Ai Recommended Turfs</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 lg:ml-16 lg:mr-16 sm:ml-10 sm:mr-10 md:ml-10 md:mr-10">
-                {topRankedTurfs.length > 0 ? (
-                    topRankedTurfs.map((turf, index) => (
-                        <div
-                            key={turf._id}
-                            onClick={() => handleTurfClick(turf._id)}
-                            style={{
-                                animationDelay: `${index * 0.2}s`,
-                            }}
-                            className="turf-card"
-                        >
-                            <TurfCard turf={turf} />
+            <div className="container mx-auto px-4 py-8">
+                <div className="text-center mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Categories</h2>
+                    <p className="text-gray-600">Choose your preferred sport</p>
+                </div>
+                <Category />
+                
+                <div className="text-center mb-8 mt-12">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Top Rated Turfs</h1>
+                    <p className="text-gray-600">Discover our most popular and highly-rated turfs</p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                    {topRankedTurfs.length > 0 ? (
+                        topRankedTurfs.map((turf, index) => (
+                            <div
+                                key={turf._id}
+                                onClick={() => handleTurfClick(turf._id)}
+                                style={{
+                                    animationDelay: `${index * 0.2}s`,
+                                }}
+                                className="turf-card transform transition-transform duration-200 hover:scale-105"
+                            >
+                                <TurfCard turf={turf} />
+                            </div>
+                        ))
+                    ) : (
+                        <div className="col-span-full text-center py-16">
+                            <div className="bg-white rounded-2xl shadow-lg p-8 border border-yellow-200 max-w-md mx-auto">
+                                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Turfs Available</h3>
+                                <p className="text-gray-600 mb-6">We're working on adding more turfs to our platform.</p>
+                                <button
+                                    onClick={() => window.location.reload()}
+                                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+                                >
+                                    Refresh Page
+                                </button>
+                            </div>
                         </div>
-                    ))
-                ) : (
-                    <p>No turfs available</p>
-                )}
+                    )}
+                </div>
             </div>
-        </>
+        </div>
     );
 }

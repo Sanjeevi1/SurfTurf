@@ -20,7 +20,6 @@ export async function GET(req: Request) {
     const city = location
     try {
         if (city) {
-
             const turfs = await Turf.find({});
             const uniqueCities = Array.from(new Set(turfs.map(turf => turf.city)))
                 .map(city => ({ name: city, code: city }));

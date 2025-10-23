@@ -1,13 +1,9 @@
-"use client";//made into client component
+"use client";
 import Link from "next/link";
 import React from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
-import {
-    IconBrandGithub,
-    IconBrandGoogle,
-    IconBrandOnlyfans,
-} from "@tabler/icons-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
@@ -15,10 +11,10 @@ export default function LoginPage() {
     const [user, setUser] = React.useState({
         email: "",
         password: "",
-
     })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false)
-
+    const [showPassword, setShowPassword] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+    const [buttonDisabled, setButtonDisabled] = React.useState(true);
 
     React.useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
@@ -27,8 +23,6 @@ export default function LoginPage() {
             setButtonDisabled(true)
         }
     }, [user])
-
-    const [loading, setLoading] = React.useState(false)
 
     const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,7 +33,13 @@ export default function LoginPage() {
             console.log(response)
             const fetchedUser = response.data.user;
             // Redirect based on the fetched role
-            window.location.href = fetchedUser.role === "owner" ? '/admin/home' : '/customer/home';
+            if (fetchedUser.role === "admin") {
+                window.location.href = '/admin/home';
+            } else if (fetchedUser.role === "owner") {
+                window.location.href = '/admin/home'; // Owners also go to admin panel
+            } else {
+                window.location.href = '/customer/home';
+            }
             console.log("Login success", response.data)
             toast.success("Login success")
 
@@ -51,66 +51,138 @@ export default function LoginPage() {
         }
     };
     return (
-        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black align-middle">
-            <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-                Welcome to SurfTurfs
-            </h2>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 flex items-center justify-center p-4">
+            <div className="w-full max-w-md">
+                {/* Header */}
+                <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mb-4">
+                        <span className="text-2xl font-bold text-white">ST</span>
+                    </div>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+                    <p className="text-gray-600">Sign in to your SurfTurf account</p>
+                </div>
 
+                {/* Login Form */}
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <form onSubmit={onLogin} className="space-y-6">
+                        {/* Email Field */}
+                        <div className="space-y-2">
+                            <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                                Email Address
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Mail className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    value={user.email}
+                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
+                                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                            </div>
+                        </div>
 
-            <form className="my-8" onSubmit={onLogin}>
+                        {/* Password Field */}
+                        <div className="space-y-2">
+                            <label htmlFor="password" className="text-sm font-medium text-gray-700">
+                                Password
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Lock className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    id="password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                    value={user.password}
+                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                                    ) : (
+                                        <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                                    )}
+                                </button>
+                            </div>
+                        </div>
 
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="email">Email Address</label>
-                    <input id="email" placeholder="email" type="email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
-                </LabelInputContainer>
-                <LabelInputContainer className="mb-4">
-                    <label htmlFor="password">Password</label>
-                    <input id="password" placeholder="••••••••" type="password"
-                        value={user.password}
-                        onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                </LabelInputContainer>
-                <br />
+                        {/* Forgot Password */}
+                        <div className="flex justify-end">
+                            <Link href="/forgotPwd" className="text-sm text-blue-600 hover:text-blue-500 font-medium">
+                                Forgot password?
+                            </Link>
+                        </div>
 
-                <button
-                    className={buttonDisabled ? "bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] opacity-60 cursor-not-allowed" :
-                        "bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"}
-                    type="submit"
-                >
-                    {loading ? "Processing" : "Login"} &rarr;
-                    <BottomGradient />
-                </button>
+                        {/* Login Button */}
+                        <button
+                            type="submit"
+                            disabled={buttonDisabled || loading}
+                            className={`w-full flex items-center justify-center px-4 py-3 border border-transparent rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                buttonDisabled || loading
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            }`}
+                        >
+                            {loading ? (
+                                <div className="flex items-center">
+                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                    Signing in...
+                                </div>
+                            ) : (
+                                <div className="flex items-center">
+                                    Sign In
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                </div>
+                            )}
+                        </button>
+                    </form>
 
-                <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-                <Link href="/signup">Visit Signup Page</Link><br /><br />
-                <Link href="/forgotPwd">Forgot Password</Link>
+                    {/* Divider */}
+                    <div className="mt-6">
+                        <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-gray-300" />
+                            </div>
+                            <div className="relative flex justify-center text-sm">
+                                <span className="px-2 bg-white text-gray-500">New to SurfTurf?</span>
+                            </div>
+                        </div>
+                    </div>
 
+                    {/* Sign Up Link */}
+                    <div className="mt-6 text-center">
+                        <Link
+                            href="/signup"
+                            className="text-blue-600 hover:text-blue-500 font-medium text-sm"
+                        >
+                            Create an account
+                        </Link>
+                    </div>
+                </div>
 
-            </form>
-
-
+                {/* Demo Credentials */}
+                <div className="mt-8 bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h3>
+                    <div className="text-xs text-blue-700 space-y-1">
+                        <div><strong>Admin:</strong> admin@surfturf.com / admin123</div>
+                        <div><strong>Owner:</strong> owner@surfturf.com / owner123</div>
+                        <div><strong>Customer:</strong> customer@surfturf.com / customer123</div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 
-const BottomGradient = () => {
-    return (
-        <>
-            <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-            <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-        </>
-    );
-};
-
-const LabelInputContainer = ({
-    children,
-    className,
-}: {
-    children: React.ReactNode;
-    className?: string;
-}) => {
-    return (
-        <div className={"flex flex-col space-y-2 w-full"}>
-            {children}
-        </div>
-    );
-};

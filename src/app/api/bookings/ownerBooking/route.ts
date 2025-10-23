@@ -22,9 +22,9 @@ export async function POST(req) {
             bookings.push(...turfBookings); // Add all bookings for this turf to the bookings array
         }
 
-        // If no bookings were found, return a 404 response
+        // If no bookings were found, return empty array
         if (!bookings.length) {
-            return NextResponse.json({ success: false, error: 'Booking not found' }, { status: 404 });
+            return NextResponse.json({ success: true, data: [] }, { status: 200 });
         }
 
         // Return the bookings as a JSON response

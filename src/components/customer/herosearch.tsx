@@ -45,7 +45,7 @@ const SelectionForm = () => {
     useEffect(() => {
         const fetchUniqueCities = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/turf?city=true`);
+                const response = await fetch(`/api/turf?location=true`);
                 const cityData = await response.json();
                 if (Array.isArray(cityData)) {
                     setLocations(cityData);

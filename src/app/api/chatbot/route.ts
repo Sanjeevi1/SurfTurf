@@ -5,7 +5,7 @@ import axios from "axios";
 
 // Function to query Grok AI for AI-based responses
 const queryAI = async (turfDetails: string, userQuery: string) => {
-    const GROK_API_KEY = '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';
+    const GROK_API_KEY = '';
     
     if (!GROK_API_KEY) {
         console.error("GROK_API_KEY not found in environment variables");

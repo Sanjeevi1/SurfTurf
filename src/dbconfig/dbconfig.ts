@@ -1,19 +1,43 @@
 import mongoose from "mongoose";
 
 async function connect() {
-    try {//since we are using typescript dbt of not resolving !-i will take care of it
-        mongoose.connect(process.env.MONGO_URI!);
+    try {
+        // Check if already connected
+        if (mongoose.connection.readyState === 1) {
+            console.log('MongoDB already connected');
+            return;
+        }
+
+        // Connect to MongoDB
+        await mongoose.connect(process.env.MONGO_URI!);
+        
         const connection = mongoose.connection;
-        //event-connected
-        connection.on('connected', () => {
-            console.log('MongoDB connected successfully');
-        })
-        connection.on('error', (err) => {
-            console.log('MongoDB connection error.Please make sure MongoDB is running ' + err);
-            process.exit();
-        })
+        
+        // Set max listeners to prevent warnings
+        connection.setMaxListeners(15);
+        
+        // Event listeners (only add if not already added)
+        if (connection.listenerCount('connected') === 0) {
+            connection.on('connected', () => {
+                console.log('MongoDB connected successfully');
+            });
+        }
+        
+        if (connection.listenerCount('error') === 0) {
+            connection.on('error', (err) => {
+                console.log('MongoDB connection error. Please make sure MongoDB is running ' + err);
+                process.exit();
+            });
+        }
+        
+        if (connection.listenerCount('disconnected') === 0) {
+            connection.on('disconnected', () => {
+                console.log('MongoDB disconnected');
+            });
+        }
+        
     } catch (error) {
-        console.log('Something goes wrog!');
+        console.log('Something goes wrong!');
         console.log(error);
     }
 }
@@ -206,4 +230,16 @@ async function seedData() {
 }
 
 
-export { connect, addDatesAndSlotsToAllTurfs }
+// Function to close connection gracefully
+async function disconnect() {
+    try {
+        if (mongoose.connection.readyState !== 0) {
+            await mongoose.connection.close();
+            console.log('MongoDB connection closed');
+        }
+    } catch (error) {
+        console.error('Error closing MongoDB connection:', error);
+    }
+}
+
+export { connect, disconnect, addDatesAndSlotsToAllTurfs }

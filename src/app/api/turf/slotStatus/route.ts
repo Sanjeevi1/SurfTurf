@@ -24,14 +24,21 @@ export async function POST(request: NextRequest) {
 
     // Loop through availableSlots to find the correct date
     for (let slotDate of turf.availableSlots) {
-      if (slotDate.date.toISOString().split("T")[0] === date) {
+      const slotDateString = slotDate.date.toISOString().split("T")[0];
+      console.log("Comparing dates:", slotDateString, "with", date);
+      
+      if (slotDateString === date) {
+        console.log("Date matched, looking for time slot:", startTime, "to", endTime);
         // Loop through slots within the matched date
         for (let slot of slotDate.slots) {
+          console.log("Checking slot:", slot.startTime, "to", slot.endTime);
           if (slot.startTime === startTime && slot.endTime === endTime) {
             // Toggle the status of the slot
-            console.log(slot.status)
+            console.log("Found matching slot, current status:", slot.status);
             slot.status = slot.status === "locked" ? "unlocked" : "locked";
+            slot.isBooked = slot.status === "locked";
             slotUpdated = true;
+            console.log("Updated slot status to:", slot.status);
 
             break;
           }

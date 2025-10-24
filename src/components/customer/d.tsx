@@ -287,7 +287,7 @@ const LivePortal = () => {
                                 </a>
                             </p>
                             <h3 className="text-2xl text-blue-600 font-medium">
-                                Rs. {product.price}
+                                ₹{product.price}
                             </h3>
                         </div>
 

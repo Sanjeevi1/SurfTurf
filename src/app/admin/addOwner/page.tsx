@@ -4,6 +4,7 @@ import React from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { validateEmail, ValidationError } from "@/utils/validation";
 
 
 
@@ -11,10 +12,25 @@ import toast from "react-hot-toast";
 export default function AddPage() {
   const router=useRouter();
   const [email,setEmail]=React.useState("");
+  const [errors, setErrors] = React.useState<ValidationError[]>([]);
    
+  const validateForm = () => {
+    const newErrors: ValidationError[] = [];
+    
+    const emailError = validateEmail(email);
+    if (emailError) newErrors.push({ field: 'email', message: emailError });
+    
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      toast.error('Please fix the validation errors');
+      return;
+    }
     
     const payload = {
       email:email,
@@ -27,7 +43,7 @@ export default function AddPage() {
       router.push("/login");
     } catch (error: any) {
       console.log("Turf Owner failed to add", error.message);
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
   return (
@@ -41,7 +57,16 @@ export default function AddPage() {
         
         <LabelInputContainer className="mb-4">
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email" onChange={(e)=>setEmail(e.target.value)} />
+                    <input 
+                        id="email" 
+                        type="email" 
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)} 
+                        className={errors.find(e => e.field === 'email') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'email') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'email')?.message}</span>
+                    )}
                 </LabelInputContainer>
         
         

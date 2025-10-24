@@ -122,6 +122,10 @@ const ConfirmationPage = () => {
                 if (res.ok) {
                     const data = await res.json();
                     toast.success(data.message);
+                    // Show success message and redirect to turf page
+                    setTimeout(() => {
+                        window.location.href = `/customer/turf/${turfId}?booking=success`;
+                    }, 1500);
                 } else {
                     toast.error("Payment failed or booking creation failed.");
                 }
@@ -173,7 +177,7 @@ const ConfirmationPage = () => {
 
                             <div className="flex justify-between text-lg mb-3">
                                 <span>Price per Hour:</span>
-                                <span>Rs. {pricePerHour.toFixed(2)}</span>
+                                <span>₹{pricePerHour.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between text-lg mb-3">
                                 <span>Duration:</span>
@@ -184,7 +188,7 @@ const ConfirmationPage = () => {
 
                             <div className="flex justify-between text-xl font-bold">
                                 <span>Total Cost:</span>
-                                <span>Rs. {totalCost.toFixed(2)}</span>
+                                <span>₹{totalCost.toFixed(2)}</span>
                             </div>
 
                             <div className="opacity-70 mt-4 text-sm">

@@ -1,10 +1,11 @@
 // components/TurfCard.tsx
 'use client'
 import React, { useEffect, useState, memo } from 'react';
-import { FaMapMarkerAlt, FaShower, FaParking, FaWifi, FaTrash } from 'react-icons/fa';
-
-import { BsBookmarkFill } from 'react-icons/bs';
+import { FaMapMarkerAlt, FaShower, FaParking, FaWifi, FaTrash, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { BsBookmarkFill, BsBookmark } from 'react-icons/bs';
+import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 interface SlotTemplate {
     startTime: string;
@@ -35,11 +36,13 @@ interface Turf {
 
 interface TurfCardProps {
     turf: Turf;
+    role?: string;
+    refreshTurfList?: () => void;
 }
 
 const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList }) => {
     const [isSaved, setIsSaved] = useState(false);
-    const [data, setdata] = useState(null)
+    const [data, setdata] = useState<any>(null)
 
     const getUserDetails = async () => {
         try {
@@ -53,24 +56,52 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
     useEffect(() => {
         getUserDetails();
     }, [])
-    const handleSaveTurf = async () => {
+    const handleSaveTurf = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
         try {
             const response = await fetch('/api/save', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userId: data._id, turfId: turf._id }),
+                body: JSON.stringify({ userId: data?._id, turfId: turf._id }),
             });
 
             if (response.ok) {
                 setIsSaved(true);
+                toast.success('Turf saved successfully!');
             } else {
                 const data = await response.json();
-                alert(data.message);
+                toast.error(data.message || 'Failed to save turf');
             }
         } catch (error) {
             console.error('Error saving turf:', error);
+        }
+    };
+
+    const handleUnsaveTurf = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+            const response = await fetch('/api/save/unsave', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: data?._id, turfId: turf._id }),
+            });
+
+            if (response.ok) {
+                setIsSaved(false);
+                toast.success('Turf removed from saved successfully!');
+            } else {
+                const data = await response.json();
+                toast.error(data.message || 'Failed to remove turf from saved');
+            }
+        } catch (error) {
+            console.error('Error unsaving turf:', error);
+            toast.error('Error removing turf from saved');
         }
     };
     const [showSaveOptions, setShowSaveOptions] = useState(false);
@@ -80,14 +111,14 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
             try {
                 const response = await axios.delete(`/api/turf/delete?id=${turf._id}`);
                 if (response.status === 200) {
-                    alert('Turf deleted successfully');
+                    toast.success('Turf deleted successfully');
                     // Optionally, trigger a re-fetch or state update in the parent component if needed
                     // refreshTurfList();
                     window.location.replace('/admin/home');
                 }
             } catch (error) {
                 console.error('Error deleting turf:', error);
-                alert('Failed to delete turf');
+                toast.error('Failed to delete turf');
             }
         }
     };
@@ -101,27 +132,25 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
                     alt={turf.name}
                     className="w-full h-40 object-cover"
                 />
-                {/* Save button with hover effect */}
-                <div
-                    className="absolute top-2 right-2"
-                    onMouseEnter={() => setShowSaveOptions(true)}
-
-                >
-                    {isSaved ? (
-                        <BsBookmarkFill className="text-yellow-300 text-2xl" />
-                    ) : (
-                        <BsBookmarkFill className="text-yellow-100 text-2xl" />
-                    )}
-
-                    {/* Show options on hover */}
-                    {showSaveOptions && !isSaved && (
-                        <div
-                            className="absolute top-10 right-0 bg-white shadow-lg rounded p-2"
-                            onClick={handleSaveTurf}
-                        >
-                            <span className="cursor-pointer text-gray-900 font-medium">Save Turf</span>
-                        </div>
-                    )}
+                {/* Improved Save button with better UX */}
+                <div className="absolute top-3 right-3 z-10">
+                    <button
+                        onClick={isSaved ? handleUnsaveTurf : handleSaveTurf}
+                        className={`
+                            p-2 rounded-full transition-all duration-300 transform hover:scale-110 
+                            ${isSaved 
+                                ? 'bg-red-500 text-white shadow-lg hover:bg-red-600' 
+                                : 'bg-white/90 text-gray-600 hover:bg-white hover:text-red-500 shadow-md'
+                            }
+                        `}
+                        title={isSaved ? 'Remove from saved' : 'Save turf'}
+                    >
+                        {isSaved ? (
+                            <HiHeart className="text-xl" />
+                        ) : (
+                            <HiOutlineHeart className="text-xl" />
+                        )}
+                    </button>
                 </div>
                 {role === 'owner' && (
                     <div className="absolute top-2 left-2">
@@ -142,20 +171,21 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
 
                 {/* Turf Dimensions */}
                 <div className="mt-2 text-sm text-gray-500">
-                    <span>{`Dimensions: ${turf.dimensions.length}m x ${turf.dimensions.width}m`}</span>
+                    <span>{`Dimensions: ${turf.dimensions?.length || 'N/A'}m x ${turf.dimensions?.width || 'N/A'}m`}</span>
                 </div>
 
                 {/* Features Icons */}
                 <div className="flex items-center space-x-4 text-yellow-300 mt-3">
-                    {turf.amenities.includes('Shower') && <FaShower title="Shower" className="text-xl" />}
-                    {turf.amenities.includes('Parking') && <FaParking title="Parking" className="text-xl" />}
-                    {turf.amenities.includes('Wifi') && <FaWifi title="Wifi" className="text-xl" />}
+                    {turf.amenities?.includes('Shower') && <FaShower title="Shower" className="text-xl" />}
+                    {turf.amenities?.includes('Parking') && <FaParking title="Parking" className="text-xl" />}
+                    {turf.amenities?.includes('Wifi') && <FaWifi title="Wifi" className="text-xl" />}
                 </div>
 
                 <div className="flex justify-between items-center mt-4">
-                    <span className="text-xl font-bold text-gray-900">Rs.{turf.pricePerHour}/hour</span>
+                    <span className="text-xl font-bold text-gray-900">₹{turf.pricePerHour}/hour</span>
                     {role !== 'owner' && role !== 'admin' && (
                         <button
+                            onClick={() => window.location.href = `/customer/turf/${turf._id}`}
                             className="bg-yellow-300 text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
                         >
                             Book Now

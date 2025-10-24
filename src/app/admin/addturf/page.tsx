@@ -19,6 +19,16 @@ import {
     Save
 } from "lucide-react";
 import PageLayout from '@/components/ui/PageLayout';
+import { 
+    validateRequired, 
+    validatePositiveNumber, 
+    validateTextLength, 
+    validateLatitude, 
+    validateLongitude, 
+    validateImages, 
+    validateSlot,
+    ValidationError 
+} from "@/utils/validation";
 
 export default function AddPage() {
     const router = useRouter();
@@ -36,6 +46,8 @@ export default function AddPage() {
     });
     const [imageUrl, setImageUrl] = React.useState("");
     const [id,setId]=React.useState("");
+    const [errors, setErrors] = React.useState<ValidationError[]>([]);
+    
     useEffect(() =>{
         const fetchId=async() =>{
             const res = await axios.get('/api/users/getuser');
@@ -97,8 +109,70 @@ export default function AddPage() {
     };
     
 
+    const validateForm = () => {
+        const newErrors: ValidationError[] = [];
+        
+        // Validate basic fields
+        const nameError = validateRequired(turf.name, "Turf name");
+        if (nameError) newErrors.push({ field: 'name', message: nameError });
+        
+        const cityError = validateRequired(turf.city, "City");
+        if (cityError) newErrors.push({ field: 'city', message: cityError });
+        
+        const descriptionError = validateTextLength(turf.description, "Description", 10, 500);
+        if (descriptionError) newErrors.push({ field: 'description', message: descriptionError });
+        
+        const priceError = validatePositiveNumber(turf.pricePerHour, "Price per hour");
+        if (priceError) newErrors.push({ field: 'pricePerHour', message: priceError });
+        
+        const categoryError = validateRequired(turf.turfCategory, "Category");
+        if (categoryError) newErrors.push({ field: 'turfCategory', message: categoryError });
+        
+        const amenitiesError = validateRequired(turf.amenities, "Amenities");
+        if (amenitiesError) newErrors.push({ field: 'amenities', message: amenitiesError });
+        
+        // Validate dimensions
+        const lengthError = validatePositiveNumber(turf.dimensions.length, "Length");
+        if (lengthError) newErrors.push({ field: 'dimensionsLength', message: lengthError });
+        
+        const widthError = validatePositiveNumber(turf.dimensions.width, "Width");
+        if (widthError) newErrors.push({ field: 'dimensionsWidth', message: widthError });
+        
+        // Validate coordinates
+        const latError = validateLatitude(turf.locationCoordinates.latitude);
+        if (latError) newErrors.push({ field: 'latitude', message: latError });
+        
+        const lngError = validateLongitude(turf.locationCoordinates.longitude);
+        if (lngError) newErrors.push({ field: 'longitude', message: lngError });
+        
+        // Validate images
+        const imagesError = validateImages(turf.images);
+        if (imagesError) newErrors.push({ field: 'images', message: imagesError });
+        
+        // Validate slots
+        if (slots.length === 0) {
+            newErrors.push({ field: 'slots', message: "At least one time slot is required" });
+        } else {
+            slots.forEach((slot, index) => {
+                const slotError = validateSlot(slot);
+                if (slotError) {
+                    newErrors.push({ field: `slot_${index}`, message: `Slot ${index + 1}: ${slotError}` });
+                }
+            });
+        }
+        
+        setErrors(newErrors);
+        return newErrors.length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        if (!validateForm()) {
+            toast.error('Please fix the validation errors');
+            return;
+        }
+        
         const payload = {
             ...turf,
             owner:id,
@@ -114,7 +188,6 @@ export default function AddPage() {
             })),
         };
 
-
         try {
             const response = await axios.post("/api/admin/add", payload);
             console.log("Turf Added", response.data);
@@ -122,7 +195,7 @@ export default function AddPage() {
             window.location.href =  '/admin/home' ;
         } catch (error: any) {
             console.log("Turf failed to add", error.message);
-            toast.error(error.message);
+            toast.error(error.response?.data?.message || error.message);
         }
     };
 
@@ -163,9 +236,14 @@ export default function AddPage() {
                                     placeholder="Enter turf name"
                                     value={turf.name}
                                     onChange={(e) => setTurf({ ...turf, name: e.target.value })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'name') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'name') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'name')?.message}</span>
+                                )}
                             </div>
 
                             <div className="space-y-2">
@@ -178,9 +256,14 @@ export default function AddPage() {
                                     placeholder="Enter city"
                                     value={turf.city}
                                     onChange={(e) => setTurf({ ...turf, city: e.target.value })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'city') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'city') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'city')?.message}</span>
+                                )}
                             </div>
 
                             <div className="space-y-2">
@@ -214,9 +297,14 @@ export default function AddPage() {
                                     placeholder="Enter price per hour"
                                     value={turf.pricePerHour}
                                     onChange={(e) => setTurf({ ...turf, pricePerHour: e.target.value })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'pricePerHour') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'pricePerHour') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'pricePerHour')?.message}</span>
+                                )}
                             </div>
                         </div>
 
@@ -230,9 +318,14 @@ export default function AddPage() {
                                 value={turf.description}
                                 onChange={(e) => setTurf({ ...turf, description: e.target.value })}
                                 rows={4}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none ${
+                                    errors.find(e => e.field === 'description') ? 'border-red-500' : 'border-gray-300'
+                                }`}
                                 required
                             />
+                            {errors.find(e => e.field === 'description') && (
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'description')?.message}</span>
+                            )}
                         </div>
                     </div>
 
@@ -254,9 +347,14 @@ export default function AddPage() {
                                     placeholder="Enter length"
                                     value={turf.dimensions.length}
                                     onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, length: e.target.value } })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'dimensionsLength') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'dimensionsLength') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'dimensionsLength')?.message}</span>
+                                )}
                             </div>
 
                             <div className="space-y-2">
@@ -269,9 +367,14 @@ export default function AddPage() {
                                     placeholder="Enter width"
                                     value={turf.dimensions.width}
                                     onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, width: e.target.value } })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'dimensionsWidth') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'dimensionsWidth') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'dimensionsWidth')?.message}</span>
+                                )}
                             </div>
 
                             <div className="space-y-2">
@@ -285,9 +388,14 @@ export default function AddPage() {
                                     placeholder="Enter latitude"
                                     value={turf.locationCoordinates.latitude}
                                     onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, latitude: e.target.value } })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'latitude') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'latitude') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'latitude')?.message}</span>
+                                )}
                             </div>
 
                             <div className="space-y-2">
@@ -301,9 +409,14 @@ export default function AddPage() {
                                     placeholder="Enter longitude"
                                     value={turf.locationCoordinates.longitude}
                                     onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, longitude: e.target.value } })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'longitude') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
+                                {errors.find(e => e.field === 'longitude') && (
+                                    <span className="text-red-500 text-sm">{errors.find(e => e.field === 'longitude')?.message}</span>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -325,9 +438,14 @@ export default function AddPage() {
                                 placeholder="e.g., Parking, Restroom, Changing Room, Floodlights"
                                 value={turf.amenities}
                                 onChange={(e) => setTurf({ ...turf, amenities: e.target.value })}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                    errors.find(e => e.field === 'amenities') ? 'border-red-500' : 'border-gray-300'
+                                }`}
                                 required
                             />
+                            {errors.find(e => e.field === 'amenities') && (
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'amenities')?.message}</span>
+                            )}
                         </div>
                     </div>
 
@@ -350,6 +468,11 @@ export default function AddPage() {
         }
     }}
 />
+                        {errors.find(e => e.field === 'images') && (
+                            <div className="mt-2">
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'images')?.message}</span>
+                            </div>
+                        )}
 
                         {/* Display Images */}
                         {turf.images.length > 0 && (
@@ -459,6 +582,12 @@ export default function AddPage() {
                             <Plus className="h-4 w-4 mr-2" />
                             Add Time Slot
                         </button>
+                        
+                        {errors.find(e => e.field === 'slots') && (
+                            <div className="mt-2">
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'slots')?.message}</span>
+                            </div>
+                        )}
 
                  {/* Display Added Slots */}
                         {slots.length > 0 && (

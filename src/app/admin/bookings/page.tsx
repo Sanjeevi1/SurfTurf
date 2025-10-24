@@ -87,7 +87,7 @@ const BookingPreview = ({ booking, onClick }) => {
                         Players: {booking.numberOfPlayers}
                     </span>
                     <span className="block text-sm font-medium text-zinc-900 dark:text-white">
-                        Total: ${booking.totalPrice}
+                        Total: ₹{booking.totalPrice}
                     </span>
                 </div>
             </div>

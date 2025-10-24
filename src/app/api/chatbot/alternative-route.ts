@@ -1,64 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbconfig/dbconfig";
 import { Turf } from "@/models/model";
-import axios from "axios";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Function to query Grok AI for AI-based responses
-const queryAI = async (turfDetails: string, userQuery: string) => {
-    const GROK_API_KEY = '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';
-    
-    if (!GROK_API_KEY) {
-        console.error("GROK_API_KEY not found in environment variables");
-        return null;
-    }
-
+// Alternative implementation using Google Generative AI SDK
+const queryAIWithSDK = async (turfDetails: string, userQuery: string) => {
     try {
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyAvLduhkslIb8Gn1F0o5UoWoVoY96MWolI');
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
         const systemPrompt = `You are SurfTurf AI Assistant, a helpful chatbot for a sports turf booking platform. 
         You help users find and book sports turfs, answer questions about facilities, pricing, and availability.
-        Be friendly, informative, and helpful. If you don't have specific information, say so politely.
-        
-        Always respond in a conversational and helpful manner. Use emojis appropriately to make responses engaging.
-        Focus on helping users with turf bookings, pricing, availability, and general sports facility information.`;
+        Be friendly, informative, and helpful. If you don't have specific information, say so politely.`;
 
         const combinedInput = `${systemPrompt}\n\nTurf Database Information:\n${turfDetails}\n\nUser Query: ${userQuery}`;
 
-        const response = await axios.post(
-            'https://api.x.ai/v1/chat/completions',
-            {
-                model: "grok-beta",
-                messages: [
-                    {
-                        role: "system",
-                        content: systemPrompt
-                    },
-                    {
-                        role: "user",
-                        content: `Turf Database Information:\n${turfDetails}\n\nUser Query: ${userQuery}`
-                    }
-                ],
-                temperature: 0.7,
-                max_tokens: 1024,
-                stream: false
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${GROK_API_KEY}`
-                }
-            }
-        );
+        const result = await model.generateContent(combinedInput);
+        const response = await result.response;
+        const text = response.text();
 
-        if (response.data && response.data.choices && response.data.choices.length > 0) {
-            const text = response.data.choices[0].message.content;
-            console.log("Grok AI Response generated successfully");
-            return { text };
-        } else {
-            console.error("No valid response from Grok API");
-            return null;
-        }
+        return { text };
     } catch (error: any) {
-        console.error("Error querying Grok AI:", error);
-        console.error("Error details:", error.response?.data || error.message);
+        console.error("Error with Google Generative AI SDK:", error);
         return null;
     }
 };
@@ -105,26 +68,21 @@ ${turf.availableSlots?.map((slot: any) => {
                     `;
                 }).join("\n\n");
 
-                // Now, send the combined turf details and user query to AI
-                const aiResponse = await queryAI(turfDetails, message);
+                // Try the SDK approach first
+                const aiResponse = await queryAIWithSDK(turfDetails, message);
                 if (aiResponse && aiResponse.text) {
                     responseMessage = aiResponse.text;
                 } else {
-                    console.log("AI Response failed, providing fallback response");
-                    responseMessage = `Based on our turf database, here are the available turfs:\n\n${turfDetails}\n\nPlease let me know if you need more specific information about any turf!`;
+                    // Fallback to direct database response
+                    responseMessage = `Here are the available turfs in our system:\n\n${turfDetails}\n\nFeel free to ask me about specific turfs, pricing, or availability!`;
                 }
             } catch (error) {
                 console.error("Error fetching turfs:", error);
                 responseMessage = 'There was an error fetching turf information.';
             }
         } else {
-            // If not a turf-related query, try to get AI response for general queries
-            try {
-                const aiResponse = await queryAI("", message);
-                if (aiResponse && aiResponse.text) {
-                    responseMessage = aiResponse.text;
-                } else {
-                    responseMessage = `Hello! I'm the SurfTurf AI Assistant. I can help you with:
+            // If not a turf-related query, provide general assistance
+            responseMessage = `Hello! I'm the SurfTurf AI Assistant. I can help you with:
         
 🏟️ **Turf Information**: Find details about available sports turfs
 📅 **Booking Help**: Assist with slot booking and availability
@@ -134,11 +92,6 @@ ${turf.availableSlots?.map((slot: any) => {
 🛠️ **Amenities**: Details about turf facilities and features
 
 Please ask me about turfs, bookings, or any sports-related questions!`;
-                }
-            } catch (error) {
-                console.error("Error with general AI query:", error);
-                responseMessage = `Hello! I'm the SurfTurf AI Assistant. I can help you with turf bookings and sports facility information. Please ask me about turfs, availability, or pricing!`;
-            }
         }
 
         // Return the AI response

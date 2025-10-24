@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
+import { validateEmail, validatePassword, ValidationError } from "@/utils/validation";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
+    const [errors, setErrors] = React.useState<ValidationError[]>([]);
 
     React.useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
@@ -24,9 +26,28 @@ export default function LoginPage() {
         }
     }, [user])
 
+    const validateForm = () => {
+        const newErrors: ValidationError[] = [];
+        
+        const emailError = validateEmail(user.email);
+        if (emailError) newErrors.push({ field: 'email', message: emailError });
+        
+        const passwordError = validatePassword(user.password);
+        if (passwordError) newErrors.push({ field: 'password', message: passwordError });
+        
+        setErrors(newErrors);
+        return newErrors.length === 0;
+    };
+
     const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("Form submitted");
+        
+        if (!validateForm()) {
+            toast.error('Please fix the validation errors');
+            return;
+        }
+        
         try {
             setLoading(true)
             const response = await axios.post("/api/users/login", user)
@@ -45,7 +66,7 @@ export default function LoginPage() {
 
         } catch (error: any) {
             console.log("Login failed", error.message)
-            toast.error('LOGIN FAILED')//toast not working look into it
+            toast.error(error.response?.data?.message || 'LOGIN FAILED')
         } finally {
             setLoading(false)
         }
@@ -80,10 +101,15 @@ export default function LoginPage() {
                                     placeholder="Enter your email"
                                     value={user.email}
                                     onChange={(e) => setUser({ ...user, email: e.target.value })}
-                                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'email') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
                             </div>
+                            {errors.find(e => e.field === 'email') && (
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'email')?.message}</span>
+                            )}
                         </div>
 
                         {/* Password Field */}
@@ -101,7 +127,9 @@ export default function LoginPage() {
                                     placeholder="Enter your password"
                                     value={user.password}
                                     onChange={(e) => setUser({ ...user, password: e.target.value })}
-                                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    className={`block w-full pl-10 pr-12 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                                        errors.find(e => e.field === 'password') ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                     required
                                 />
                                 <button
@@ -116,6 +144,9 @@ export default function LoginPage() {
                                     )}
                                 </button>
                             </div>
+                            {errors.find(e => e.field === 'password') && (
+                                <span className="text-red-500 text-sm">{errors.find(e => e.field === 'password')?.message}</span>
+                            )}
                         </div>
 
                         {/* Forgot Password */}

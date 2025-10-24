@@ -236,7 +236,7 @@ const LivePortal = () => {
                                 </a>
                             </p>
                             <h3 className="text-2xl text-yellow-300 font-medium">
-                                Rs. {turf.pricePerHour} per hour
+                                ₹{turf.pricePerHour} per hour
                             </h3>
                         </div>
 

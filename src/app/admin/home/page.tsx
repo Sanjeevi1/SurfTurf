@@ -2,12 +2,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import TurfCard from '@/components/customer/card';
-import { Dropdown } from 'primereact/dropdown';
-import { Slider } from 'primereact/slider';
-import { MultiSelect } from 'primereact/multiselect';
-import { FaFilter } from 'react-icons/fa';  // Import FontAwesome filter icon
-import 'primereact/resources/themes/saga-blue/theme.css';
-import 'primereact/resources/primereact.min.css';
 import axios from "axios";
 
 interface SlotTemplate {
@@ -40,35 +34,13 @@ interface Turf {
 const Turfs: React.FC = () => {
     const [turfs, setTurfs] = useState<Turf[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [searchQuery, setSearchQuery] = useState<string>(''); // State for search query
-    const [selectedCity, setSelectedCity] = useState<string | null>(null); // Filter by city
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // Filter by turf category
-    const [priceRange, setPriceRange] = useState<number>(10000); // Price range filter
-    const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]); // Filter by amenities
-    const [showFilters, setShowFilters] = useState<boolean>(false); // State to show/hide filters
-
-    const cities = [
-        { label: 'All Cities', value: '0' },
-        { label: 'City1', value: 'City 1' },
-        { label: 'City2', value: 'City 2' },
-        { label: 'City3', value: 'City 3' }
-    ];
-
-    const categories = [
-        { label: 'All Categories', value: '0' },
-        { label: 'Football', value: 'Football' },
-        { label: 'Cricket', value: 'Cricket' },
-        { label: 'Hockey', value: 'Hockey' }
-    ];
-
-    const amenitiesList = [
-        { label: 'WiFi', value: 'WiFi' },
-        { label: 'Parking', value: 'Parking' },
-        { label: 'Locker Rooms', value: 'Locker Rooms' },
-        { label: 'Showers', value: 'Showers' }
-    ];
     const [id,setId]=useState("");
     const [role,setRole]=useState("");
+    const [selectedCity, setSelectedCity] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [priceRange, setPriceRange] = useState<number>(10000);
+    const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
     const fetchTurfs = async () => {
         try {
             // Fetch user ID first
@@ -143,63 +115,6 @@ const Turfs: React.FC = () => {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Turfs</h1>
                     <p className="text-gray-600">Manage your turf listings and bookings</p>
                 </div>
-            <div className="flex justify-end ">
-
-                {/* Toggle Filter Button */}
-                <div className="mb-4">
-                    <button
-                        onClick={() => setShowFilters(!showFilters)}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                    >
-                        <FaFilter className="mr-2" /> 
-                        {showFilters ? 'Hide Filters' : 'Show Filters'}
-                    </button>
-                </div>
-            </div>
-
-            {/* Search and Filter section (conditionally rendered) */}
-            {showFilters && (
-                <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-yellow-200">
-                    <form className="max-w-md mx-auto mb-6">
-                        <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input
-                                type="search"
-                                id="default-search"
-                                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors"
-                                placeholder="Search Turfs..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                required
-                            />
-                        </div>
-                    </form>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {/* City Filter */}
-                        <Dropdown value={selectedCity} options={cities} onChange={(e) => setSelectedCity(e.value)} placeholder="Select City" className="w-full " />
-
-                        {/* Turf Category Filter */}
-                        <Dropdown value={selectedCategory} options={categories} onChange={(e) => setSelectedCategory(e.value)} placeholder="Select Category" className="w-full" />
-
-                        {/* Price Range Filter */}
-                        <div className="flex flex-col">
-                            <label className="block text-sm font-medium text-gray-700">Price Range</label>
-                            <Slider value={priceRange} onChange={(e) => setPriceRange(e.value)} max={10000} className="w-full" />
-                            <div className="text-sm text-gray-700">Up to ₹{priceRange}</div>
-                        </div>
-
-                        {/* Amenities Filter */}
-                        <MultiSelect value={selectedAmenities} options={amenitiesList} onChange={(e) => setSelectedAmenities(e.value)} placeholder="Select Amenities" className="w-full" />
-                        {console.log({ searchQuery, selectedCity, selectedCategory, priceRange, selectedAmenities })}
-                    </div>
-                </div>
-            )}
             {/* Turf Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredTurfs.length > 0 ? (

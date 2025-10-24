@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import ReviewComponent from "@/components/customer/Review";
 
 const DatePickerWithSlots = ({
@@ -41,6 +41,18 @@ const DatePickerWithSlots = ({
             loadSlots(selectedDate);
         }
     }, [selectedDate, availableSlots]);
+
+    // Refresh slots when component becomes visible (after booking)
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (!document.hidden && selectedDate) {
+                loadSlots(selectedDate);
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }, [selectedDate]);
 
     const loadSlots = (date) => {
         const fetchedSlots = fetchSlotsForDate(date);
@@ -149,25 +161,52 @@ const LivePortal = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const { id } = useParams();
+    const searchParams = useSearchParams();
     const [data, setdata] = useState(null)
     const [similarTurfs, setSimilarTurfs] = useState([]);
 
     const fetchSimilarTurfs = async () => {
+        if (!id) {
+            console.error("No turf ID provided for similar turfs");
+            return;
+        }
+
         try {
             const response = await axios.get(`/api/similar-turfs/${id}`);
-
-            const similarTurfIds = response.data.map((item) => item.id);
-            const allTurfsResponse = await axios.get(`/api/turf`);
-            const allTurfs = allTurfsResponse.data;
-
-            // Filter turfs that match similar turf IDs
-            const filteredSimilarTurfs = allTurfs.filter((turf) =>
-                similarTurfIds.includes(turf._id)
-            );
-
-            setSimilarTurfs(filteredSimilarTurfs);
+            
+            if (response.data && response.data.success) {
+                // Use the formatted data directly from the API
+                setSimilarTurfs(response.data.data || []);
+            } else {
+                console.error("Error fetching similar turfs:", response.data?.message || "Unknown error");
+                // Fallback: get some random turfs from the same city
+                await fetchFallbackTurfs();
+            }
         } catch (error) {
             console.error("Error fetching similar turfs:", error);
+            // Fallback: get some random turfs
+            await fetchFallbackTurfs();
+        }
+    };
+
+    const fetchFallbackTurfs = async () => {
+        try {
+            const fallbackResponse = await axios.get(`/api/turf`);
+            const allTurfs = fallbackResponse.data || [];
+            const currentTurfCity = turf?.city;
+            
+            if (currentTurfCity) {
+                const cityTurfs = allTurfs.filter((t: any) => 
+                    t.city === currentTurfCity && t._id !== id
+                ).slice(0, 6);
+                setSimilarTurfs(cityTurfs);
+            } else {
+                const randomTurfs = allTurfs.filter((t: any) => t._id !== id).slice(0, 6);
+                setSimilarTurfs(randomTurfs);
+            }
+        } catch (fallbackError) {
+            console.error("Fallback also failed:", fallbackError);
+            setSimilarTurfs([]);
         }
     };
 
@@ -218,6 +257,51 @@ const LivePortal = () => {
         if (id) fetchTurf();
     }, [id]);
 
+    // Check for booking success and refresh turf data
+    useEffect(() => {
+        const bookingSuccess = searchParams.get('booking');
+        if (bookingSuccess === 'success') {
+            // Show success message
+            toast.success('Booking completed successfully!');
+            // Refresh turf data to show updated slot status
+            const refreshTurf = async () => {
+                try {
+                    const response = await fetch(`/api/turf/${id}`);
+                    if (!response.ok) throw new Error('Failed to fetch turf');
+                    const data = await response.json();
+                    setTurf(data.data);
+                } catch (error) {
+                    console.error('Error refreshing turf:', error);
+                }
+            };
+            refreshTurf();
+            // Clean up URL parameter
+            window.history.replaceState({}, '', `/customer/turf/${id}`);
+        }
+    }, [searchParams, id]);
+
+    // Refresh turf data when component becomes visible (e.g., after booking)
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (!document.hidden && id) {
+                const fetchTurf = async () => {
+                    try {
+                        const response = await fetch(`/api/turf/${id}`);
+                        if (!response.ok) throw new Error('Failed to fetch turf');
+                        const data = await response.json();
+                        setTurf(data.data);
+                    } catch (error) {
+                        console.error('Error refreshing turf:', error);
+                    }
+                };
+                fetchTurf();
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }, [id]);
+
     if (loading || !turf) return <div>Loading...</div>;
 
     return (
@@ -238,7 +322,7 @@ const LivePortal = () => {
                                 </a>
                             </p>
                             <h3 className="text-2xl text-yellow-300 font-medium">
-                                Rs. {turf.pricePerHour} per hour
+                                ₹{turf.pricePerHour} per hour
                             </h3>
                         </div>
 
@@ -265,6 +349,7 @@ const LivePortal = () => {
                                 setSelectedDate={setSelectedDate}
                                 setSelectedSlot={setSelectedSlot}
                                 selectedSlot={selectedSlot}
+                                key={turf._id} // Force re-render when turf data changes
                             />
 
                             <div className="flex items-center justify-between mt-6">
@@ -322,13 +407,24 @@ const LivePortal = () => {
                 {/* Similar Turfs Section */}
                 <div className="mt-12">
                     <h2 className="text-xl font-semibold mb-4">Similar Turfs</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                         {similarTurfs.length > 0 ? (
-                            similarTurfs.map((similarTurf) => (
-                                <TurfCard turf={similarTurf} />
+                            similarTurfs.map((similarTurf: any, index: number) => (
+                                <div
+                                    key={similarTurf.id || similarTurf._id || index}
+                                    onClick={() => window.location.href = `/customer/turf/${similarTurf.id || similarTurf._id}`}
+                                    style={{
+                                        animationDelay: `${index * 0.2}s`,
+                                    }}
+                                    className="turf-card transform transition-transform duration-200 hover:scale-105 cursor-pointer"
+                                >
+                                    <TurfCard turf={similarTurf} />
+                                </div>
                             ))
                         ) : (
-                            <p>No similar turfs available.</p>
+                            <div className="col-span-full text-center py-8">
+                                <p className="text-gray-500">No similar turfs available at the moment.</p>
+                            </div>
                         )}
                     </div>
                 </div>

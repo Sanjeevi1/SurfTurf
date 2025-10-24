@@ -9,6 +9,15 @@ import toast from "react-hot-toast";
 import { UploadDropzone } from "@/utils/uploadthing";
 import Image from "next/image";
 import { useEffect } from "react";
+import { 
+    validateRequired, 
+    validatePositiveNumber, 
+    validateTextLength, 
+    validateLatitude, 
+    validateLongitude, 
+    validateSlot,
+    ValidationError 
+} from "@/utils/validation";
 
 export default function AddPage() {
     const {id}=useParams();
@@ -28,6 +37,7 @@ export default function AddPage() {
         
     });
     const [imageUrl, setImageUrl] = React.useState("");
+    const [errors, setErrors] = React.useState<ValidationError[]>([]);
     const [slot, setSlot] = React.useState<Slot>({
         date: "",
         startTime: "",
@@ -129,8 +139,54 @@ export default function AddPage() {
     
     
 
+    const validateForm = () => {
+        const newErrors: ValidationError[] = [];
+        
+        // Validate basic fields
+        const nameError = validateRequired(turf.name, "Turf name");
+        if (nameError) newErrors.push({ field: 'name', message: nameError });
+        
+        const cityError = validateRequired(turf.city, "City");
+        if (cityError) newErrors.push({ field: 'city', message: cityError });
+        
+        const descriptionError = validateTextLength(turf.description, "Description", 10, 500);
+        if (descriptionError) newErrors.push({ field: 'description', message: descriptionError });
+        
+        const priceError = validatePositiveNumber(turf.pricePerHour, "Price per hour");
+        if (priceError) newErrors.push({ field: 'pricePerHour', message: priceError });
+        
+        const categoryError = validateRequired(turf.turfCategory, "Category");
+        if (categoryError) newErrors.push({ field: 'turfCategory', message: categoryError });
+        
+        const amenitiesError = validateRequired(turf.amenities, "Amenities");
+        if (amenitiesError) newErrors.push({ field: 'amenities', message: amenitiesError });
+        
+        // Validate dimensions
+        const lengthError = validatePositiveNumber(turf.dimensions.length, "Length");
+        if (lengthError) newErrors.push({ field: 'dimensionsLength', message: lengthError });
+        
+        const widthError = validatePositiveNumber(turf.dimensions.width, "Width");
+        if (widthError) newErrors.push({ field: 'dimensionsWidth', message: widthError });
+        
+        // Validate coordinates
+        const latError = validateLatitude(turf.locationCoordinates.latitude);
+        if (latError) newErrors.push({ field: 'latitude', message: latError });
+        
+        const lngError = validateLongitude(turf.locationCoordinates.longitude);
+        if (lngError) newErrors.push({ field: 'longitude', message: lngError });
+        
+        setErrors(newErrors);
+        return newErrors.length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        if (!validateForm()) {
+            toast.error('Please fix the validation errors');
+            return;
+        }
+        
         const payload = {
             id,
             name: turf.name,
@@ -157,11 +213,11 @@ export default function AddPage() {
         try {
             const response = await axios.post("/api/admin/edit", payload);
             console.log("Turf Added", response.data);
-            toast.success("Turf added successfully");
-            router.push("/login");
+            toast.success("Turf updated successfully");
+            router.push("/admin/home");
         } catch (error: any) {
             console.log("Turf failed to edit", error.message);
-            toast.error(error.message);
+            toast.error(error.response?.data?.message || error.message);
         }
     };
     
@@ -172,52 +228,142 @@ export default function AddPage() {
             <form className="my-8" onSubmit={handleSubmit}>
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="name">Name</label>
-                    <input value={turf.name} id="name" type="text" onChange={(e) => setTurf({ ...turf, name: e.target.value })} />
+                    <input 
+                        value={turf.name} 
+                        id="name" 
+                        type="text" 
+                        onChange={(e) => setTurf({ ...turf, name: e.target.value })} 
+                        className={errors.find(e => e.field === 'name') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'name') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'name')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="description">Description</label>
-                    <input value={turf.description} id="description" type="text" onChange={(e) => setTurf({ ...turf, description: e.target.value })} />
+                    <input 
+                        value={turf.description} 
+                        id="description" 
+                        type="text" 
+                        onChange={(e) => setTurf({ ...turf, description: e.target.value })} 
+                        className={errors.find(e => e.field === 'description') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'description') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'description')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="pricePerHour">Price per Hour</label>
-                    <input value={turf.pricePerHour} id="pricePerHour" type="number" onChange={(e) => setTurf({ ...turf, pricePerHour: e.target.value })} />
+                    <input 
+                        value={turf.pricePerHour} 
+                        id="pricePerHour" 
+                        type="number" 
+                        onChange={(e) => setTurf({ ...turf, pricePerHour: e.target.value })} 
+                        className={errors.find(e => e.field === 'pricePerHour') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'pricePerHour') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'pricePerHour')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="city">City</label>
-                    <input value={turf.city} id="city" type="text" onChange={(e) => setTurf({ ...turf, city: e.target.value })} />
+                    <input 
+                        value={turf.city} 
+                        id="city" 
+                        type="text" 
+                        onChange={(e) => setTurf({ ...turf, city: e.target.value })} 
+                        className={errors.find(e => e.field === 'city') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'city') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'city')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="amenities">Amenities (comma-separated)</label>
-                    <input value={turf.amenities} id="amenities" type="text" onChange={(e) => setTurf({ ...turf, amenities: e.target.value })} />
+                    <input 
+                        value={turf.amenities} 
+                        id="amenities" 
+                        type="text" 
+                        onChange={(e) => setTurf({ ...turf, amenities: e.target.value })} 
+                        className={errors.find(e => e.field === 'amenities') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'amenities') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'amenities')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="turfCategory">Category</label>
-                    <input value={turf.turfCategory} id="turfCategory" type="text" onChange={(e) => setTurf({ ...turf, turfCategory: e.target.value })} />
+                    <input 
+                        value={turf.turfCategory} 
+                        id="turfCategory" 
+                        type="text" 
+                        onChange={(e) => setTurf({ ...turf, turfCategory: e.target.value })} 
+                        className={errors.find(e => e.field === 'turfCategory') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'turfCategory') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'turfCategory')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="dimensionsLength">Length</label>
-                    <input value={turf.dimensions.length} id="dimensionsLength" type="number" onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, length: e.target.value } })} />
+                    <input 
+                        value={turf.dimensions.length} 
+                        id="dimensionsLength" 
+                        type="number" 
+                        onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, length: e.target.value } })} 
+                        className={errors.find(e => e.field === 'dimensionsLength') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'dimensionsLength') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'dimensionsLength')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="dimensionsWidth">Width</label>
-                    <input value={turf.dimensions.width} id="dimensionsWidth" type="number" onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, width: e.target.value } })} />
+                    <input 
+                        value={turf.dimensions.width} 
+                        id="dimensionsWidth" 
+                        type="number" 
+                        onChange={(e) => setTurf({ ...turf, dimensions: { ...turf.dimensions, width: e.target.value } })} 
+                        className={errors.find(e => e.field === 'dimensionsWidth') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'dimensionsWidth') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'dimensionsWidth')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="latitude">Latitude</label>
-                    <input value={turf.locationCoordinates.latitude} id="latitude" type="number" onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, latitude: e.target.value } })} />
+                    <input 
+                        value={turf.locationCoordinates.latitude} 
+                        id="latitude" 
+                        type="number" 
+                        onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, latitude: e.target.value } })} 
+                        className={errors.find(e => e.field === 'latitude') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'latitude') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'latitude')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
                     <label htmlFor="longitude">Longitude</label>
-                    <input value={turf.locationCoordinates.longitude} id="longitude" type="number" onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, longitude: e.target.value } })} />
+                    <input 
+                        value={turf.locationCoordinates.longitude} 
+                        id="longitude" 
+                        type="number" 
+                        onChange={(e) => setTurf({ ...turf, locationCoordinates: { ...turf.locationCoordinates, longitude: e.target.value } })} 
+                        className={errors.find(e => e.field === 'longitude') ? 'border-red-500' : ''}
+                    />
+                    {errors.find(e => e.field === 'longitude') && (
+                        <span className="text-red-500 text-sm">{errors.find(e => e.field === 'longitude')?.message}</span>
+                    )}
                 </LabelInputContainer>
 
                 {/* Upload Component */}

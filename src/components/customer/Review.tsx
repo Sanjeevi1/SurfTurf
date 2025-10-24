@@ -47,10 +47,10 @@ const ReviewItem = ({ item }) => {
             <hr className="dark:border-slate-700 my-5" />
             <div className="flex flex-col lg:flex-row justify-between">
                 <div className="w-full lg:w-1/3">
-                    <div>{item.user.username}</div>
+                    <div>{item.user?.username || 'Anonymous User'}</div>
                     <div className="flex mb-6">
                         <div>
-                            <h5 className="font-medium my-1">{item.user.name}</h5>
+                            <h5 className="font-medium my-1">{item.user?.name || 'Anonymous'}</h5>
                             <Rating rating={item.rating} showLabel={true} />
                             <p className="font-semibold mb-0"> <>{item.comment}</></p>
                             <p className="opacity-50 mb-0 text-sm">{new Date(item.createdAt).toLocaleDateString()}</p>
@@ -147,18 +147,35 @@ const ReviewComponent = ({ turfId }) => {
                 const data = await response.json();
                 console.log(data, 'aaaaaaaaaaaa');
 
-                // Fetch user details for each review
-                const userPromises = data.map(review =>
-                    fetch(`/api/users/${review.user._id}`).then(res => res.json())
-                );
+                // Fetch user details for each review (only if user exists)
+                const userPromises = data
+                    .filter(review => review.user && review.user._id)
+                    .map(review =>
+                        fetch(`/api/users/${review.user._id}`).then(res => res.json())
+                    );
 
                 const users = await Promise.all(userPromises);
 
                 // Combine reviews with user details
-                const reviewsWithUsers = data.map((review, index) => ({
-                    ...review,
-                    user: users[index].data,
-                }));
+                const reviewsWithUsers = data.map((review, index) => {
+                    if (review.user && review.user._id) {
+                        const userIndex = data.filter(r => r.user && r.user._id).findIndex(r => r.user._id === review.user._id);
+                        return {
+                            ...review,
+                            user: users[userIndex]?.data || review.user,
+                        };
+                    }
+                    // If no user data, provide default user object
+                    return {
+                        ...review,
+                        user: review.user || {
+                            _id: 'anonymous',
+                            username: 'Anonymous User',
+                            name: 'Anonymous',
+                            email: 'anonymous@example.com'
+                        }
+                    };
+                });
 
                 setReviews(reviewsWithUsers);
             } catch (error) {

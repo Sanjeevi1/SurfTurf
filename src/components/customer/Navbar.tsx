@@ -47,11 +47,9 @@ export function NavBar() {
 
     return (
         <Navbar fluid className="bg-white shadow-lg border-b border-gray-200">
-            <Navbar.Brand>
-                <Link href="/customer/home" className="flex items-center">
-                    <span className="self-center whitespace-nowrap text-2xl font-bold text-blue-600">SurfTurf</span>
-                </Link>
-            </Navbar.Brand>
+            <Link href="/customer/home" className="flex items-center">
+                <span className="self-center whitespace-nowrap text-2xl font-bold text-blue-600">SurfTurf</span>
+            </Link>
             
             <div className="flex md:order-2 items-center gap-4">
                 {data ? (
@@ -173,10 +171,10 @@ export function NavBar() {
                         <Navbar.Link href="/customer/turf" className="text-gray-700 hover:text-blue-600 font-medium">
                             Turf
                         </Navbar.Link>
-                        <Navbar.Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
+                        <Navbar.Link href="/customer/services" className="text-gray-700 hover:text-blue-600 font-medium">
                             Services
                         </Navbar.Link>
-                        <Navbar.Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
+                        <Navbar.Link href="/customer/contact" className="text-gray-700 hover:text-blue-600 font-medium">
                             Contact
                         </Navbar.Link>
                     </>

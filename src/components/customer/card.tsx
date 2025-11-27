@@ -1,7 +1,7 @@
 // components/TurfCard.tsx
 'use client'
 import React, { useEffect, useState, memo } from 'react';
-import { FaMapMarkerAlt, FaShower, FaParking, FaWifi, FaTrash, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaShower, FaParking, FaWifi, FaTrash, FaHeart, FaRegHeart, FaEdit } from 'react-icons/fa';
 import { BsBookmarkFill, BsBookmark } from 'react-icons/bs';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import axios from 'axios';
@@ -107,6 +107,7 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
     const [showSaveOptions, setShowSaveOptions] = useState(false);
     const handleDeleteTurf = async (e: React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
         if (confirm('Are you sure you want to delete this turf?')) {
             try {
                 const response = await axios.delete(`/api/turf/delete?id=${turf._id}`);
@@ -121,6 +122,12 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
                 toast.error('Failed to delete turf');
             }
         }
+    };
+
+    const handleEditTurf = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = `/admin/edit/${turf._id}`;
     };
 
     return (
@@ -152,10 +159,15 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
                         )}
                     </button>
                 </div>
-                {role === 'owner' && (
-                    <div className="absolute top-2 left-2">
+                {(role === 'owner' || role === 'admin') && (
+                    <div className="absolute top-2 left-2 flex gap-2">
+                        <FaEdit
+                            className="text-blue-600 text-2xl cursor-pointer hover:text-blue-700 transition-colors"
+                            onClick={handleEditTurf}
+                            title="Edit Turf"
+                        />
                         <FaTrash
-                            className="text-red-600 text-2xl cursor-pointer"
+                            className="text-red-600 text-2xl cursor-pointer hover:text-red-700 transition-colors"
                             onClick={handleDeleteTurf}
                             title="Delete Turf"
                         />
@@ -185,10 +197,26 @@ const TurfCard: React.FC<TurfCardProps> = memo(({ turf, role, refreshTurfList })
                     <span className="text-xl font-bold text-gray-900">₹{turf.pricePerHour}/hour</span>
                     {role !== 'owner' && role !== 'admin' && (
                         <button
-                            onClick={() => window.location.href = `/customer/turf/${turf._id}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                window.location.href = `/customer/turf/${turf._id}`;
+                            }}
                             className="bg-yellow-300 text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
                         >
                             Book Now
+                        </button>
+                    )}
+                    {(role === 'owner' || role === 'admin') && (
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                window.location.href = `/admin/edit/${turf._id}`;
+                            }}
+                            className="bg-blue-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-600 transition-colors"
+                        >
+                            Edit
                         </button>
                     )}
                 </div>

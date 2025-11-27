@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurfTurf Architecture Diagram</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                nodeSpacing: 50,
+                rankSpacing: 80
+            },
+            securityLevel: 'loose'
+        });
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .mermaid {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .legend h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .legend-item {
+            margin: 10px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏟️ SurfTurf System Architecture</h1>
+        <p class="subtitle">Complete system architecture diagram showing all components, data flow, and integrations</p>
+        
+        <div class="mermaid">
+graph TB
+    subgraph CLIENT["🌐 Client Layer"]
+        WEB[Web Browser<br/>Chrome, Firefox, Safari]
+        CUSTOMER[Customer Portal<br/>Browse, Search, Book]
+        OWNER[Owner Portal<br/>Manage Turfs, View Bookings]
+        ADMIN[Admin Portal<br/>Manage Users, Turfs, System]
+    end
+
+    subgraph NEXTJS["⚛️ Next.js 15 Application"]
+        ROUTER[App Router<br/>File-based Routing]
+        MIDDLEWARE[Middleware<br/>JWT Auth & Route Protection]
+        PAGES[Pages<br/>SSR/SSG/CSR]
+        API_ROUTES[API Routes<br/>RESTful Endpoints]
+    end
+
+    subgraph FRONTEND["🎨 Frontend Components"]
+        NAV[Navbar<br/>Navigation & Auth]
+        HERO[Hero/Search<br/>Turf Discovery]
+        TURF_CARD[Turf Cards<br/>Display Turf Info]
+        BOOKING_UI[Booking UI<br/>Slot Selection & Payment]
+        CHATBOT_UI[Chatbot UI<br/>React Chatbot Kit]
+        FILTER[Filter Components<br/>Search & Filter]
+        REVIEW_UI[Review Components<br/>Ratings & Comments]
+        DATE_PICKER[Date Picker<br/>Slot Selection]
+    end
+
+    subgraph API["🔌 API Endpoints"]
+        AUTH_API["Auth APIs<br/>/api/users/login<br/>/api/users/signup<br/>/api/users/logout"]
+        TURF_API["Turf APIs<br/>/api/turf<br/>/api/turf/[id]<br/>/api/turf/ownerTurfs<br/>/api/turf/slotStatus"]
+        BOOKING_API["Booking APIs<br/>/api/book<br/>/api/bookings<br/>/api/bookings/ownerBooking"]
+        PAYMENT_API["Payment APIs<br/>/api/createOrder<br/>/api/verifyOrder"]
+        REVIEW_API["Review APIs<br/>/api/review<br/>/api/review/[id]"]
+        RECOMMEND_API["Recommend API<br/>/api/recommend<br/>/api/similar-turfs/[id]"]
+        CHATBOT_API["Chatbot API<br/>/api/chatbot"]
+        ADMIN_API["Admin APIs<br/>/api/admin/add<br/>/api/admin/edit<br/>/api/admin/addOwner"]
+        UPLOAD_API["Upload API<br/>/api/uploadthing"]
+        SAVE_API["Save APIs<br/>/api/save<br/>/api/save/unsave<br/>/api/save/use"]
+    end
+
+    subgraph BUSINESS["⚙️ Business Logic Layer"]
+        JWT_AUTH["JWT Authentication<br/>jsonwebtoken"]
+        BCRYPT["Password Hashing<br/>bcryptjs"]
+        VALIDATION["Validation Utils<br/>Input Validation"]
+        MAILER["Email Service<br/>Nodemailer"]
+        TOKEN_HELPER["Token Helper<br/>getDataFromToken"]
+    end
+
+    subgraph DATABASE["💾 Data Layer"]
+        MONGO[(MongoDB Atlas<br/>Cloud Database)]
+        MONGOOSE[Mongoose ODM<br/>Schema & Models]
+        
+        subgraph MODELS["Data Models"]
+            USER_MODEL[User Model<br/>username, email, role]
+            TURF_MODEL[Turf Model<br/>name, slots, pricing]
+            BOOKING_MODEL[Booking Model<br/>user, turf, slots]
+            REVIEW_MODEL[Review Model<br/>rating, comment, likes]
+            PAYMENT_MODEL[Payment Model<br/>transaction, status]
+            SAVED_MODEL[SavedTurf Model<br/>favorites]
+        end
+    end
+
+    subgraph EXTERNAL["🌍 External Services"]
+        RAZORPAY["Razorpay<br/>Payment Gateway<br/>Order Creation & Verification"]
+        UPLOADTHING["UploadThing<br/>File Storage<br/>Image Uploads"]
+        GROK_AI["Grok AI (x.ai)<br/>Chatbot Service<br/>Natural Language Processing"]
+    end
+
+    subgraph ML_SERVICE["🤖 ML Recommendation Service"]
+        FLASK_APP[Flask Application<br/>Python Backend]
+        
+        subgraph ML_MODELS["ML Models"]
+            RF_MODEL[Random Forest<br/>random_forest_model.pkl<br/>Score Prediction]
+            TFIDF_DESC[TF-IDF Description<br/>tfidf_desc.pkl]
+            TFIDF_AMEN[TF-IDF Amenities<br/>tfidf_amen.pkl]
+            TFIDF_COMMENTS[TF-IDF Comments<br/>tfidf_comments.pkl]
+            SCALER[MinMax Scaler<br/>scaler.pkl]
+        end
+        
+        subgraph ML_PROCESS["ML Processing Pipeline"]
+            SENTIMENT[Sentiment Analysis<br/>TextBlob]
+            FEATURE_ENG[Feature Engineering<br/>TF-IDF Vectorization]
+            PREDICTION[Score Prediction<br/>Recommendation Ranking]
+            COSINE_SIM[Cosine Similarity<br/>Similar Turf Finding]
+        end
+    end
+
+    %% Client to Application Flow
+    WEB --> ROUTER
+    CUSTOMER --> PAGES
+    OWNER --> PAGES
+    ADMIN --> PAGES
+
+    %% Next.js Internal Flow
+    ROUTER --> MIDDLEWARE
+    MIDDLEWARE -->|Protected Routes| PAGES
+    MIDDLEWARE -->|API Auth| API_ROUTES
+    PAGES --> FRONTEND
+    PAGES -->|Client-side Calls| API_ROUTES
+
+    %% Frontend Components
+    FRONTEND --> NAV
+    FRONTEND --> HERO
+    FRONTEND --> TURF_CARD
+    FRONTEND --> BOOKING_UI
+    FRONTEND --> CHATBOT_UI
+    FRONTEND --> FILTER
+    FRONTEND --> REVIEW_UI
+    FRONTEND --> DATE_PICKER
+
+    %% API Routes
+    API_ROUTES --> AUTH_API
+    API_ROUTES --> TURF_API
+    API_ROUTES --> BOOKING_API
+    API_ROUTES --> PAYMENT_API
+    API_ROUTES --> REVIEW_API
+    API_ROUTES --> RECOMMEND_API
+    API_ROUTES --> CHATBOT_API
+    API_ROUTES --> ADMIN_API
+    API_ROUTES --> UPLOAD_API
+    API_ROUTES --> SAVE_API
+
+    %% Business Logic Connections
+    AUTH_API --> JWT_AUTH
+    AUTH_API --> BCRYPT
+    AUTH_API --> VALIDATION
+    AUTH_API --> TOKEN_HELPER
+    TURF_API --> VALIDATION
+    BOOKING_API --> VALIDATION
+    REVIEW_API --> VALIDATION
+    ADMIN_API --> VALIDATION
+
+    %% Data Access Layer
+    AUTH_API --> USER_MODEL
+    TURF_API --> TURF_MODEL
+    BOOKING_API --> BOOKING_MODEL
+    REVIEW_API --> REVIEW_MODEL
+    PAYMENT_API --> PAYMENT_MODEL
+    SAVE_API --> SAVED_MODEL
+    ADMIN_API --> USER_MODEL
+    ADMIN_API --> TURF_MODEL
+    
+    USER_MODEL --> MONGOOSE
+    TURF_MODEL --> MONGOOSE
+    BOOKING_MODEL --> MONGOOSE
+    REVIEW_MODEL --> MONGOOSE
+    PAYMENT_MODEL --> MONGOOSE
+    SAVED_MODEL --> MONGOOSE
+    MONGOOSE --> MONGO
+
+    %% External Service Integrations
+    PAYMENT_API -->|Create Order| RAZORPAY
+    PAYMENT_API -->|Verify Payment| RAZORPAY
+    BOOKING_UI -->|Payment Handler| RAZORPAY
+    
+    UPLOAD_API -->|Upload Files| UPLOADTHING
+    TURF_API -->|Store Image URLs| UPLOADTHING
+    
+    CHATBOT_API -->|Query AI| GROK_AI
+    CHATBOT_API -->|Fetch Turf Data| TURF_MODEL
+    CHATBOT_UI -->|Send Messages| CHATBOT_API
+
+    %% ML Service Flow
+    RECOMMEND_API -->|HTTP Request| FLASK_APP
+    FLASK_APP -->|Fetch Data| MONGO
+    FLASK_APP --> SENTIMENT
+    FLASK_APP --> FEATURE_ENG
+    SENTIMENT --> PREDICTION
+    FEATURE_ENG --> TFIDF_DESC
+    FEATURE_ENG --> TFIDF_AMEN
+    FEATURE_ENG --> TFIDF_COMMENTS
+    FEATURE_ENG --> SCALER
+    FEATURE_ENG --> PREDICTION
+    PREDICTION --> RF_MODEL
+    PREDICTION --> COSINE_SIM
+    FLASK_APP -->|Return Recommendations| RECOMMEND_API
+
+    %% Component to API Connections
+    BOOKING_UI --> BOOKING_API
+    BOOKING_UI --> PAYMENT_API
+    TURF_CARD --> TURF_API
+    TURF_CARD --> SAVE_API
+    REVIEW_UI --> REVIEW_API
+    HERO --> TURF_API
+    HERO --> RECOMMEND_API
+    FILTER --> TURF_API
+
+    %% Styling
+    style NEXTJS fill:#0070f3,stroke:#0051cc,stroke-width:3px,color:#fff
+    style MONGO fill:#47a248,stroke:#2d6e2f,stroke-width:3px,color:#fff
+    style RAZORPAY fill:#3395ff,stroke:#0066cc,stroke-width:3px,color:#fff
+    style UPLOADTHING fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#fff
+    style GROK_AI fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
+    style ML_SERVICE fill:#ff6b6b,stroke:#e63946,stroke-width:3px,color:#fff
+    style RF_MODEL fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    style FLASK_APP fill:#ff6b6b,stroke:#e63946,stroke-width:2px,color:#fff
+    style CLIENT fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
+    style FRONTEND fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style API fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+    style BUSINESS fill:#f3e8ff,stroke:#9333ea,stroke-width:2px
+    style DATABASE fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+        </div>
+
+        <div class="legend">
+            <h3>📋 Architecture Overview</h3>
+            <div class="legend-item">
+                <strong>Tech Stack:</strong> Next.js 15 (App Router), React 18, TypeScript, MongoDB, Mongoose, Tailwind CSS
+            </div>
+            <div class="legend-item">
+                <strong>Authentication:</strong> JWT tokens stored in cookies, bcryptjs for password hashing, middleware for route protection
+            </div>
+            <div class="legend-item">
+                <strong>Payment:</strong> Razorpay integration with order creation and signature verification
+            </div>
+            <div class="legend-item">
+                <strong>AI Chatbot:</strong> Grok AI (x.ai) for natural language processing, integrated with turf database
+            </div>
+            <div class="legend-item">
+                <strong>ML Recommendations:</strong> Flask service with Random Forest model, TF-IDF vectorization, sentiment analysis using TextBlob
+            </div>
+            <div class="legend-item">
+                <strong>File Storage:</strong> UploadThing for image uploads and storage
+            </div>
+            <div class="legend-item">
+                <strong>Data Models:</strong> User, Turf, Booking, Review, Payment, SavedTurf with MongoDB schemas
+            </div>
+        </div>
+    </div>
+</body>
+</html>
